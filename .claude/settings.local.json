@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(grep -E \"\\\\.\\(js|jsx\\)$\")",
+      "Bash(grep:*)",
+      "Bash(perl -i -pe 's/[123] уровень: //g' public/locales/RU/translation.json)",
+      "Bash(perl -i -pe 's/[123]-деңгээл::? ?–? ?//g' public/locales/KG/translation.json)",
+      "Bash(perl -i -pe 's/[123]-деңгээл::? ?//g' /Users/kanayseidi/Desktop/PLIT/public/locales/KG/translation.json)",
+      "Bash(perl:*)"
+    ]
+  }
+}
