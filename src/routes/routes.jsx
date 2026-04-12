@@ -78,7 +78,7 @@ const routes = [
       { path: "main", element: <AdminPage /> }, // Страница админки
       { path: "home", element: <HomeAdmin /> },
       { path: "courses", element: <CoursesAdmin /> },
-      { path: "docs", element: <DocsAdmin /> },
+      // { path: "docs", element: <DocsAdmin /> },
       { path: "npa", element: <NpaAdmin /> },
       { path: "news", element: <NewsAdmin /> },
       { path: "plit", element: <PlitAdmin /> },
