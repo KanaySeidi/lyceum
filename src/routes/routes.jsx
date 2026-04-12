@@ -30,7 +30,7 @@ import {
   AboutAdmin,
   TeachersSlAdmin,
 } from "../pages";
-import Layout from "../pages/admin/adminSidebar/layout";
+import Layout from "../pages/admin/adminSidebar/Layout";
 import GeneralSecEducation from "../pages/HeaderPages/documents/GeneralSecEducation";
 import Npa99 from "../pages/HeaderPages/documents/Npa99";
 import NpaKr from "../pages/HeaderPages/documents/NpaKr";
