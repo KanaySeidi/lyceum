@@ -23,7 +23,6 @@ import {
   AdminPage,
   HomeAdmin,
   CoursesAdmin,
-  DocsAdmin,
   NpaAdmin,
   NewsAdmin,
   PlitAdmin,
@@ -70,15 +69,14 @@ const routes = [
   { path: "/plit/teachers", element: <TeacherSl /> },
   { path: "/plit/masters", element: <Masters /> },
   // { path: "/plit/teachers/:id", element: <Teacherinfo /> },
+  { path: "/admin/sign", element: <LoginPage /> },
   {
     path: "/admin",
     element: <Layout />,
     children: [
-      { path: "sign", element: <LoginPage /> }, // Страница входа
-      { path: "main", element: <AdminPage /> }, // Страница админки
+      { path: "main", element: <AdminPage /> },
       { path: "home", element: <HomeAdmin /> },
       { path: "courses", element: <CoursesAdmin /> },
-      // { path: "docs", element: <DocsAdmin /> },
       { path: "npa", element: <NpaAdmin /> },
       { path: "news", element: <NewsAdmin /> },
       { path: "plit", element: <PlitAdmin /> },

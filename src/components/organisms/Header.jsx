@@ -94,10 +94,8 @@ const Header = () => {
   ];
 
   const plitLinks = [
-    { to: "/plit/about", label: t("plit.about") },
-    { to: "/plit/teachers", label: t("plit.administration") },
-    { to: "/plit/teachers", label: t("plit.teachers") },
-    { to: "/plit/masters", label: t("plit.masters") },
+    { to: "/plit/about",     label: t("plit.about") },
+    { to: "/plit/teachers",  label: "Коллектив" },
   ];
 
   const togglePopover = () => setIsPopoverOpen((prev) => !prev);

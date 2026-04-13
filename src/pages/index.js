@@ -22,7 +22,6 @@ export { default as LoginPage } from "./admin/adminpages/LoginPage";
 export { default as AdminPage } from "./admin/adminpages/AdminPage";
 export { default as HomeAdmin } from "./admin/adminpages/HomeAdmin";
 export { default as CoursesAdmin } from "./admin/adminpages/CoursesAdmin";
-export { default as DocsAdmin } from "./admin/adminpages/DocsAdmin";
 export { default as NpaAdmin } from "./admin/adminpages/NpaAdmin";
 export { default as NewsAdmin } from "./admin/adminpages/NewsAdmin";
 export { default as PlitAdmin } from "./admin/adminpages/PlitAdmin";

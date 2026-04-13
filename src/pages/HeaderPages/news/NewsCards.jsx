@@ -1,91 +1,165 @@
-import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import img1 from "../../../assets/img/1.jpg";
+import { useNews } from "../../../hooks/useNews";
+
+const SkeletonCard = ({ wide }) => (
+  <div
+    className={`rounded-2xl overflow-hidden animate-pulse ${wide ? "md:col-span-2" : ""}`}
+    style={{ background: "#63001F11", height: wide ? 360 : 260 }}
+  />
+);
+
+const NewsCard = ({ item, index, wide, pinned }) => (
+  <motion.div
+    initial={{ opacity: 0, y: 24 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true }}
+    transition={{ duration: 0.45, delay: index * 0.08 }}
+    className={wide ? "md:col-span-2" : ""}
+  >
+    <div className="relative group h-full">
+      {/* Pinned badge */}
+      {pinned && (
+        <div
+          className="absolute top-3 left-3 z-20 flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold"
+          style={{ background: "#C4973A", color: "#fff", boxShadow: "0 2px 8px rgba(196,151,58,0.4)" }}
+        >
+          📌 Закреплено
+        </div>
+      )}
+
+      <Link to={`/news/${item.id}`} className="block h-full">
+        <div
+          className="relative rounded-2xl overflow-hidden h-full"
+          style={{
+            minHeight: wide ? 360 : 260,
+            boxShadow: pinned
+              ? "0 0 0 2px #C4973A, 0 8px 32px rgba(99,0,31,0.2)"
+              : "0 4px 24px rgba(99,0,31,0.12)",
+            transition: "box-shadow 0.3s",
+          }}
+        >
+          <img
+            src={item.image}
+            alt={item.title}
+            loading="lazy"
+            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+            style={{ minHeight: wide ? 360 : 260 }}
+          />
+
+          {/* Gradient */}
+          <div
+            className="absolute inset-0"
+            style={{
+              background:
+                "linear-gradient(to top, rgba(99,0,31,0.92) 0%, rgba(99,0,31,0.35) 55%, transparent 100%)",
+            }}
+          />
+
+          {/* Gold hover border */}
+          <div className="absolute inset-0 rounded-2xl border-2 border-transparent group-hover:border-[#C4973A] transition-all duration-300" />
+
+          {/* Content */}
+          <div className="absolute bottom-0 left-0 right-0 p-5">
+            <span
+              className="inline-block text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full mb-3"
+              style={{ background: "rgba(196,151,58,0.25)", color: "#C4973A", border: "1px solid #C4973A66" }}
+            >
+              {item.category}
+            </span>
+            <h2
+              className={`font-bold text-white leading-snug line-clamp-2 ${
+                wide ? "text-2xl md:text-3xl" : "text-lg"
+              }`}
+            >
+              {item.title}
+            </h2>
+            <div className="flex items-center justify-between mt-3">
+              <p className="text-white/55 text-xs uppercase tracking-widest">
+                {item.date}
+              </p>
+              <span
+                className="text-xs font-bold px-3 py-1 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 translate-x-2 group-hover:translate-x-0"
+                style={{ background: "#C4973A22", color: "#C4973A", border: "1px solid #C4973A55" }}
+              >
+                Читать →
+              </span>
+            </div>
+          </div>
+        </div>
+      </Link>
+    </div>
+  </motion.div>
+);
 
 export const NewsCards = () => {
-  const { t } = useTranslation();
+  const { news, loading, pinnedId } = useNews();
 
-  const cards = [
-    {
-      id: 1,
-      title: t("newsPage.id1.title"),
-      category: t("newsPage.id1.category"),
-      date: t("newsPage.id1.date"),
-      image: img1,
-      highlight: true,
-    },
-    {
-      id: 2,
-      title: t("newsPage.id2.title"),
-      category: t("newsPage.id2.category"),
-      date: t("newsPage.id2.date"),
-      image: img1,
-    },
-    {
-      id: 3,
-      title: t("newsPage.id3.title"),
-      category: t("newsPage.id3.category"),
-      date: t("newsPage.id3.date"),
-      image: img1,
-    },
-    {
-      id: 4,
-      title: t("newsPage.id4.title"),
-      category: t("newsPage.id4.category"),
-      date: t("newsPage.id4.date"),
-      image: img1,
-    },
-    {
-      id: 5,
-      title: t("newsPage.id5.title"),
-      category: t("newsPage.id5.category"),
-      date: t("newsPage.id5.date"),
-      image: img1,
-    },
-  ];
+  const pinned = news.find((n) => n.id === pinnedId);
+  const rest = news.filter((n) => n.id !== pinnedId);
+  // Если нет закреплённой — первая идёт широкой
+  const featured = pinned || news[0];
+  const others = pinned ? rest : news.slice(1);
 
   return (
-    <div className="p-8">
-      <div className="flex justify-center items-center mb-6">
-        <p className="font-semibold text-5xl text-center leading-snug">
-          Новости
-        </p>
+    <div className="min-h-screen" style={{ background: "#F8F2F4" }}>
+      {/* ── HERO ── */}
+      <div
+        className="relative overflow-hidden"
+        style={{
+          background:
+            "linear-gradient(135deg, #63001F 0%, #8B0032 60%, #A0003A 100%)",
+        }}
+      >
+        <div className="absolute -top-16 -right-16 w-72 h-72 rounded-full opacity-10" style={{ background: "#C4973A" }} />
+        <div className="absolute -bottom-8 -left-8 w-48 h-48 rounded-full opacity-10" style={{ background: "#C4973A" }} />
+        <div className="relative max-w-6xl mx-auto px-6 py-14 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: -16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.55 }}
+          >
+            <h1 className="text-4xl md:text-5xl font-bold text-white">Новости</h1>
+          </motion.div>
+        </div>
       </div>
 
-      <div className="w-full max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
-        {cards.map((card, index) => (
-          <motion.div
-            key={card.id}
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: index * 0.1 }}
-            viewport={{ once: true }}
-            className={`relative shadow-lg rounded overflow-hidden group transition-all duration-300 transform hover:scale-[1.02] ${
-              card.highlight ? "md:col-span-2" : "md:col-span-1"
-            }`}
-          >
-            <Link to={`/news/${card.id}`}>
-              <img
-                src={card.image}
-                alt={card.title}
-                className="w-full h-64 object-cover group-hover:brightness-90 transition duration-300"
-                loading="lazy"
+      {/* ── КАРТОЧКИ ── */}
+      <div className="max-w-6xl mx-auto px-6 py-10 pb-16">
+        {loading ? (
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+            <SkeletonCard wide />
+            <SkeletonCard />
+            <SkeletonCard />
+            <SkeletonCard />
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+            {featured && (
+              <NewsCard
+                item={featured}
+                index={0}
+                wide
+                pinned={featured.id === pinnedId}
               />
-              <div className="p-4 absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/70 to-transparent text-white">
-                <p className="text-sm font-medium uppercase tracking-wide">
-                  {card.category}
-                </p>
-                <h2 className="text-lg font-bold mt-1 line-clamp-2">
-                  {card.title}
-                </h2>
-                <p className="text-sm font-medium uppercase tracking-widest mt-1">
-                  {card.date}
-                </p>
-              </div>
-            </Link>
-          </motion.div>
-        ))}
+            )}
+            {others.map((item, i) => (
+              <NewsCard
+                key={item.id}
+                item={item}
+                index={i + 1}
+                pinned={item.id === pinnedId}
+              />
+            ))}
+          </div>
+        )}
+
+        {!loading && news.length === 0 && (
+          <div className="text-center py-24">
+            <p className="text-2xl font-bold mb-2" style={{ color: "#63001F" }}>Новостей пока нет</p>
+            <p style={{ color: "#63001F66" }}>Скоро здесь появятся материалы</p>
+          </div>
+        )}
       </div>
     </div>
   );

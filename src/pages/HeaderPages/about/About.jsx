@@ -1,270 +1,292 @@
-import React, { useState, useEffect } from "react";
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTranslation } from "react-i18next";
-import HeroSection from "./common/HeroSection";
 
+import imgSection from "../../../assets/img/About/img_section.png";
+import imgHistory from "../../../assets/img/About/img_image.png";
+import imgMission from "../../../assets/img/About/img_alexisbrownxv7k95vofaunsplashjpg.png";
+import imgCampus from "../../../assets/img/About/img_.png";
+import imgGallery1 from "../../../assets/img/About/img_aliyahyaifpeapwegt4unsplashjpg.png";
+import imgGallery2 from "../../../assets/img/About/img_mikakorhonenmki1rfsqwvyunsplashjpg.png";
+import imgGallery3 from "../../../assets/img/About/img_ryanjacobsoncxuoqwdrv4iunsplashjpg.png";
+
+const stats = [
+  { value: "1999", labelKey: "numCard1" },
+  { value: "4000+", labelKey: "numCard2" },
+  { value: "20k+", labelKey: "numCard3" },
+  { value: "40+", labelKey: "numCard4" },
+];
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 24 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.55, ease: "easeOut" } },
+};
 
 function AboutPage() {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const [showVideo, setShowVideo] = useState(false);
-  const [aboutData, setAboutData] = useState(null);
-
-  // Загрузка данных из localStorage
-  useEffect(() => {
-    const savedData = localStorage.getItem("aboutData");
-    if (savedData) {
-      setAboutData(JSON.parse(savedData));
-    }
-  }, []);
-
-  if (!aboutData) {
-    return (
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        className="min-h-screen flex items-center justify-center bg-gray-100"
-      >
-        <p className="text-xl text-gray-600">Загрузка...</p>
-      </motion.div>
-    );
-  }
-
-  const currentLang = i18n.language === "KG" ? "translation" : "text";
-
-  const handleApplicationClick = () => {
-    alert(aboutData.form.application[currentLang] + " clicked!");
-  };
-
-  const handleRequestInfoClick = () => {
-    alert(aboutData.form.requestInfo[currentLang] + " clicked!");
-  };
-
-  const handleVisitClick = () => {
-    alert(aboutData.form.visit[currentLang] + " clicked!");
-  };
-
-  const handleExploreHistoryClick = () => {
-    alert(aboutData.history.button[currentLang] + " clicked!");
-  };
-
-  const handleLearnMoreClick = () => {
-    alert(aboutData.mission.button[currentLang] + " clicked!");
-  };
-
-  const handleImageError = (e) => {
-    if (!e.target.dataset.errorHandled) {
-      e.target.src = "https://placehold.co/300x300?text=No+Image";
-      e.target.dataset.errorHandled = "true";
-    }
-  };
-
-  const fadeInUp = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.6, ease: "easeOut" },
-    },
-  };
 
   return (
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      className="min-h-screen bg-white"
+      className="min-h-screen"
+      style={{ background: "#F8F2F4" }}
     >
-      {/* Hero Section */}
-      <HeroSection
-        title={aboutData.hero.title[currentLang]}
-        subtitle={aboutData.hero.subtitle[currentLang]}
-        backgroundImage="/assets/img/About/img_section.png"
-        overlayColor="bg-bordo"
-      />
+      {/* ── HERO ── */}
+      <div className="relative h-[420px] md:h-[500px] overflow-hidden">
+        <img
+          src={imgSection}
+          alt="ПЛИТ"
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+        <div
+          className="absolute inset-0"
+          style={{ background: "linear-gradient(135deg, rgba(99,0,31,0.92) 0%, rgba(99,0,31,0.6) 60%, transparent 100%)" }}
+        />
+        <div
+          className="absolute -top-20 -right-20 w-96 h-96 rounded-full opacity-10"
+          style={{ background: "#C4973A" }}
+        />
 
-      {/* Main Content */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* University Description */}
-        <motion.section
-          className="py-16"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
-          variants={fadeInUp}
-        >
-          <div className="space-y-6">
-            {aboutData.description.map((item, idx) => (
-              <p
-                key={idx}
-                className="text-xl md:text-2xl font-semibold text-gray-800 leading-relaxed"
-              >
-                {item[currentLang]}
-              </p>
-            ))}
-          </div>
-        </motion.section>
+        <div className="relative z-10 h-full flex flex-col justify-center max-w-7xl mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            <span
+              className="inline-block text-xs font-bold uppercase tracking-widest px-4 py-1 rounded-full mb-4"
+              style={{ background: "#C4973A22", color: "#C4973A", border: "1px solid #C4973A55" }}
+            >
+              {t("plit.about")}
+            </span>
+            <h1 className="text-4xl md:text-6xl font-bold text-white leading-tight mb-4 max-w-2xl">
+              {t("PLIT")}
+            </h1>
+            <p className="text-white/70 text-lg max-w-xl">
+              {t("PLITDeviz")}
+            </p>
+          </motion.div>
+        </div>
+      </div>
 
-        {/* Image Gallery */}
-        <motion.section
-          className="py-8"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
-          variants={fadeInUp}
-        >
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {aboutData.imageGallery.map((item, idx) => (
+      {/* ── СТАТИСТИКА ── */}
+      <motion.section
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+        variants={fadeUp}
+        style={{ background: "linear-gradient(135deg, #63001F 0%, #8B0032 100%)" }}
+        className="py-16"
+      >
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+            {stats.map((stat, i) => (
               <motion.div
-                key={idx}
-                whileHover={{ scale: 1.05 }}
-                className="overflow-hidden rounded-lg shadow-md"
+                key={i}
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: i * 0.1 }}
               >
-                <img
-                  src={item.src}
-                  alt={item.alt[currentLang]}
-                  className="w-full h-80 object-cover"
-                  onError={handleImageError}
-                />
+                <p
+                  className="text-4xl md:text-5xl font-bold mb-2"
+                  style={{ color: "#C4973A" }}
+                >
+                  {stat.value}
+                </p>
+                <p className="text-white/70 text-sm uppercase tracking-wider font-medium">
+                  {t(stat.labelKey)}
+                </p>
               </motion.div>
             ))}
           </div>
-        </motion.section>
-      </main>
+        </div>
+      </motion.section>
 
-      {/* Statistics Section */}
+      {/* ── ГАЛЕРЕЯ ── */}
       <motion.section
-        className="bg-bordo text-white py-20"
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, amount: 0.3 }}
-        variants={fadeInUp}
+        viewport={{ once: true, amount: 0.2 }}
+        variants={fadeUp}
+        className="max-w-7xl mx-auto px-6 py-16"
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
-            {aboutData.statistics.map((stat, idx) => (
-              <div key={idx}>
-                <h3 className="text-5xl md:text-6xl font-bold mb-4">
-                  {stat.key === "students"
-                    ? "4k+"
-                    : stat.key === "lyceum"
-                    ? "#1"
-                    : "40+"}
-                </h3>
-                <p className="text-sm font-semibold uppercase tracking-wider">
-                  {stat.value[currentLang]}
-                </p>
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
+          {[imgGallery1, imgGallery2, imgGallery3].map((src, i) => (
+            <motion.div
+              key={i}
+              whileHover={{ scale: 1.03, y: -4 }}
+              transition={{ duration: 0.25 }}
+              className="rounded-2xl overflow-hidden"
+              style={{
+                boxShadow: "0 4px 20px rgba(99,0,31,0.12)",
+                border: "2px solid #63001F11",
+              }}
+            >
+              <img
+                src={src}
+                alt=""
+                className="w-full h-64 object-cover"
+                onError={(e) => { e.target.src = "https://placehold.co/400x256?text=ПЛИТ"; }}
+              />
+            </motion.div>
+          ))}
+        </div>
+      </motion.section>
+
+      {/* ── ИСТОРИЯ ── */}
+      <motion.section
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.2 }}
+        variants={fadeUp}
+        className="py-16"
+        style={{ background: "#fff" }}
+      >
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <motion.div
+              whileHover={{ scale: 1.02 }}
+              transition={{ duration: 0.3 }}
+              className="rounded-2xl overflow-hidden"
+              style={{
+                boxShadow: "0 8px 40px rgba(99,0,31,0.15)",
+                border: "3px solid #C4973A33",
+              }}
+            >
+              <img
+                src={imgHistory}
+                alt="История ПЛИТ"
+                className="w-full h-96 object-cover"
+                onError={(e) => { e.target.src = "https://placehold.co/600x384?text=История"; }}
+              />
+            </motion.div>
+
+            <div className="space-y-5">
+              <div>
+                <span
+                  className="inline-block text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full mb-3"
+                  style={{ background: "#63001F11", color: "#63001F" }}
+                >
+                  История
+                </span>
+                <h2 className="text-4xl font-bold leading-tight" style={{ color: "#63001F" }}>
+                  С 1999 года — в авангарде IT-образования
+                </h2>
               </div>
-            ))}
+              <div className="w-12 h-1 rounded-full" style={{ background: "#C4973A" }} />
+              <p className="text-base leading-relaxed" style={{ color: "#63001F88" }}>
+                Профессиональный Лицей Информационных Технологий был основан в 1999 году
+                и стал первым специализированным учебным заведением Кыргызстана в сфере IT.
+                За более чем 25 лет лицей подготовил тысячи квалифицированных специалистов,
+                которые работают по всему миру.
+              </p>
+            </div>
           </div>
         </div>
       </motion.section>
 
-      {/* History Section */}
+      {/* ── МИССИЯ ── */}
       <motion.section
-        className="bg-gray-50 py-20"
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, amount: 0.3 }}
-        variants={fadeInUp}
+        viewport={{ once: true, amount: 0.2 }}
+        variants={fadeUp}
+        className="py-16"
+        style={{ background: "#F8F2F4" }}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <motion.div whileHover={{ scale: 1.05 }}>
-              <img
-                src="/assets/img/About/img_image.png"
-                alt={aboutData.history.title[currentLang]}
-                className="w-full h-96 object-cover rounded-lg shadow-lg"
-                onError={handleImageError}
+            <div
+              className="rounded-2xl p-10 text-white relative overflow-hidden"
+              style={{ background: "linear-gradient(135deg, #63001F 0%, #8B0032 100%)" }}
+            >
+              <div
+                className="absolute -top-10 -right-10 w-48 h-48 rounded-full opacity-10"
+                style={{ background: "#C4973A" }}
               />
-            </motion.div>
-            <div className="space-y-6">
-              <h2 className="text-4xl md:text-5xl font-bold text-gray-900">
-                {aboutData.history.title[currentLang]}
-              </h2>
-              <p className="text-lg text-gray-700 leading-relaxed">
-                {aboutData.history.text[currentLang]}
-              </p>
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                onClick={handleExploreHistoryClick}
-                className="text-lg font-medium text-bordo hover:text-bordo transition-colors border-b-2 border-bordo pb-1 flex items-center"
+              <span
+                className="inline-block text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full mb-4"
+                style={{ background: "#C4973A22", color: "#C4973A", border: "1px solid #C4973A44" }}
               >
-                {aboutData.history.button[currentLang]}{" "}
-                <FaArrowRight className="ml-2" />
-              </motion.button>
+                {t("ourMission")}
+              </span>
+              <h2 className="text-3xl md:text-4xl font-bold mb-5 leading-tight relative">
+                {t("keyOfSuccess")}
+              </h2>
+              <div className="w-12 h-0.5 mb-5" style={{ background: "#C4973A" }} />
+              <p className="text-white/75 text-base leading-relaxed relative">
+                {t("keyOfSuccessText")}
+              </p>
             </div>
-          </div>
-        </div>
-      </motion.section>
 
-      {/* Mission Section */}
-      <motion.section
-        className="py-20"
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.3 }}
-        variants={fadeInUp}
-      >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div className="bg-bordo p-8 md:p-12 rounded-lg text-white">
-              <h2 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
-                {aboutData.mission.title[currentLang]}
-              </h2>
-              <p className="text-lg leading-relaxed mb-8">
-                {aboutData.mission.text[currentLang]}
-              </p>
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                onClick={handleLearnMoreClick}
-                className="text-lg font-medium text-white hover:text-gray-200 transition-colors flex items-center"
-              >
-                {aboutData.mission.button[currentLang]}{" "}
-                <FaArrowRight className="ml-2" />
-              </motion.button>
-            </div>
-            <motion.div whileHover={{ scale: 1.05 }}>
+            <motion.div
+              whileHover={{ scale: 1.02 }}
+              transition={{ duration: 0.3 }}
+              className="rounded-2xl overflow-hidden"
+              style={{
+                boxShadow: "0 8px 40px rgba(99,0,31,0.15)",
+                border: "3px solid #C4973A33",
+              }}
+            >
               <img
-                src="/assets/img/About/img_alexisbrownxv7k95vofaunsplashjpg.png"
-                alt={aboutData.mission.title[currentLang]}
-                className="w-full h-96 object-cover rounded-lg shadow-lg"
-                onError={handleImageError}
+                src={imgMission}
+                alt="Миссия"
+                className="w-full h-96 object-cover"
+                onError={(e) => { e.target.src = "https://placehold.co/600x384?text=Миссия"; }}
               />
             </motion.div>
           </div>
         </div>
       </motion.section>
 
-      {/* Campus Section */}
+      {/* ── ВИДЕО КАМПУСА ── */}
       <motion.section
-        className="py-20 text-center"
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, amount: 0.3 }}
-        variants={fadeInUp}
+        viewport={{ once: true, amount: 0.2 }}
+        variants={fadeUp}
+        className="py-16 text-center"
+        style={{ background: "#fff" }}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-6xl md:text-8xl font-bold text-gray-900 mb-12 uppercase tracking-wider">
-            {aboutData.campusMedia[0].caption[currentLang]}
+        <div className="max-w-7xl mx-auto px-6">
+          <h2 className="text-4xl md:text-5xl font-bold mb-3" style={{ color: "#63001F" }}>
+            Наш кампус
           </h2>
+          <div className="w-16 h-1 mx-auto rounded-full mb-10" style={{ background: "#C4973A" }} />
+
           <motion.div
-            whileHover={{ scale: 1.02 }}
-            className="relative mx-auto max-w-4xl cursor-pointer rounded-lg shadow-lg overflow-hidden"
-            style={{ height: "24rem" }}
+            whileHover={{ scale: 1.01 }}
+            transition={{ duration: 0.3 }}
+            className="relative mx-auto max-w-4xl cursor-pointer rounded-2xl overflow-hidden"
+            style={{
+              height: "24rem",
+              boxShadow: "0 12px 50px rgba(99,0,31,0.25)",
+              border: "3px solid #C4973A44",
+            }}
             onClick={() => setShowVideo(true)}
           >
             <img
-              src="/assets/img/About/img_.png"
-              alt="Campus Preview"
+              src={imgCampus}
+              alt="Кампус"
               className="w-full h-full object-cover"
-              onError={handleImageError}
+              onError={(e) => { e.target.src = "https://placehold.co/896x384?text=Кампус"; }}
             />
-            <div className="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center">
-              <motion.button
+            <div
+              className="absolute inset-0 flex items-center justify-center"
+              style={{ background: "rgba(99,0,31,0.35)" }}
+            >
+              <motion.div
                 whileHover={{ scale: 1.1 }}
-                className="w-24 h-24 bg-white bg-opacity-90 rounded-full flex items-center justify-center hover:bg-opacity-100 transition-all"
+                className="w-20 h-20 rounded-full flex items-center justify-center"
+                style={{ background: "#fff", boxShadow: "0 4px 20px rgba(99,0,31,0.4)" }}
               >
-                <FaPlay className="w-12 h-12 text-bordo" />
-              </motion.button>
+                <svg viewBox="0 0 24 24" className="w-8 h-8 ml-1" fill="#63001F">
+                  <path d="M8 5v14l11-7z" />
+                </svg>
+              </motion.div>
             </div>
           </motion.div>
 
@@ -272,7 +294,8 @@ function AboutPage() {
             {showVideo && (
               <>
                 <motion.div
-                  className="fixed inset-0 bg-black bg-opacity-75 z-40"
+                  className="fixed inset-0 z-40"
+                  style={{ background: "rgba(99,0,31,0.8)", backdropFilter: "blur(4px)" }}
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
@@ -280,69 +303,36 @@ function AboutPage() {
                 />
                 <motion.div
                   className="fixed inset-0 flex items-center justify-center z-50 px-4"
-                  initial={{ scale: 0.7, opacity: 0 }}
+                  initial={{ scale: 0.8, opacity: 0 }}
                   animate={{ scale: 1, opacity: 1 }}
-                  exit={{ scale: 0.7, opacity: 0 }}
+                  exit={{ scale: 0.8, opacity: 0 }}
                 >
-                  <div className="relative w-full max-w-3xl aspect-video rounded-lg shadow-2xl bg-black">
+                  <div
+                    className="relative w-full max-w-3xl aspect-video rounded-2xl overflow-hidden"
+                    style={{ boxShadow: "0 20px 60px rgba(0,0,0,0.5)" }}
+                  >
                     <iframe
                       width="100%"
                       height="100%"
-                      src={`${aboutData.campusMedia[0].src}?autoplay=1`}
-                      title="YouTube video player"
-                      frameBorder="0"
+                      src="https://www.youtube.com/embed/ebkc-lhQJZ0?autoplay=1"
+                      title="Кампус ПЛИТ"
+                      frameBorder={0}
                       allow="autoplay; encrypted-media"
                       allowFullScreen
-                      className="rounded-lg"
+                      className="rounded-2xl"
                     />
-                    <motion.button
-                      whileHover={{ scale: 1.1 }}
+                    <button
                       onClick={() => setShowVideo(false)}
-                      className="absolute -top-4 -right-4 bg-white rounded-full w-10 h-10 flex items-center justify-center shadow-lg text-xl text-gray-600"
+                      className="absolute top-3 right-3 w-9 h-9 rounded-full flex items-center justify-center text-white font-bold text-lg transition-colors"
+                      style={{ background: "#63001F" }}
                     >
-                      ×
-                    </motion.button>
+                      ✕
+                    </button>
                   </div>
                 </motion.div>
               </>
             )}
           </AnimatePresence>
-        </div>
-      </motion.section>
-
-      {/* Student Testimonial */}
-      <motion.section
-        className="py-20"
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.3 }}
-        variants={fadeInUp}
-      >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div className="relative">
-              <div className="bg-yellow-400 w-60 h-56 absolute top-8 left-8 rounded-lg z-0"></div>
-              <FaQuoteLeft className="absolute top-0 left-0 w-20 h-20 text-gray-300 z-10" />
-              <motion.img
-                whileHover={{ scale: 1.05 }}
-                src="/assets/img/About/img_icons8teamfclyt7lw5wgunsplashjpg.png"
-                alt={aboutData.testimonial.name[currentLang]}
-                className="relative z-20 w-96 h-96 object-cover rounded-lg shadow-lg"
-                onError={handleImageError}
-              />
-            </div>
-            <div className="space-y-6">
-              <h3 className="text-3xl md:text-4xl font-bold text-gray-900">
-                {aboutData.testimonial.name[currentLang]}
-              </h3>
-              <p className="text-sm text-gray-600 uppercase tracking-wider">
-                {aboutData.testimonial.degree[currentLang]}
-              </p>
-              <blockquote className="text-xl md:text-2xl font-semibold text-gray-800 leading-relaxed">
-                {aboutData.testimonial.quote[currentLang]}
-              </blockquote>
-            </div>
-          </div>
         </div>
       </motion.section>
     </motion.div>

@@ -1,13 +1,5 @@
-import { Documents } from "../information/Documents";
-import { InformationLyceum } from "../information/InformationLyceum";
+import { Navigate } from "react-router-dom";
 
-const InfoPage = () => {
-  return (
-    <div>
-      <InformationLyceum />
-      <Documents />
-    </div>
-  );
-};
+const InfoPage = () => <Navigate to="/info/applicant" replace />;
 
 export default InfoPage;

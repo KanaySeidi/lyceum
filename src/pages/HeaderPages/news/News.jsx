@@ -1,93 +1,32 @@
-import { useTranslation } from "react-i18next";
 import { useParams, Link } from "react-router-dom";
-import img1 from "../../../assets/img/1.jpg";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ArrowLeft } from "lucide-react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import { motion } from "framer-motion";
 import "swiper/css";
 import "swiper/css/navigation";
+import { useNews } from "../../../hooks/useNews";
 
 export const News = () => {
-  const { t } = useTranslation();
   const { id } = useParams();
+  const { news, loading, getById } = useNews();
   const prevRef = useRef(null);
   const nextRef = useRef(null);
   const [swiperInstance, setSwiperInstance] = useState(null);
 
-  const mainArticle = {
-    id: 1,
-    title: t("newsPage.id1.title"),
-    category: t("newsPage.id1.category"),
-    date: t("newsPage.id1.date"),
-    image: img1,
-    content: t("newsPage.id1.content"),
-  };
-
-  const articles = [
-    {
-      id: 2,
-      title: t("newsPage.id2.title"),
-      category: t("newsPage.id2.category"),
-      date: t("newsPage.id2.date"),
-      image: img1,
-      content: t("newsPage.id2.content"),
-    },
-    {
-      id: 3,
-      title: t("newsPage.id3.title"),
-      category: t("newsPage.id3.category"),
-      date: t("newsPage.id3.date"),
-      image: img1,
-      content: t("newsPage.id3.content"),
-    },
-    {
-      id: 4,
-      title: t("newsPage.id4.title"),
-      category: t("newsPage.id4.category"),
-      date: t("newsPage.id4.date"),
-      image: img1,
-      content: t("newsPage.id4.content"),
-    },
-    {
-      id: 5,
-      title: t("newsPage.id5.title"),
-      category: t("newsPage.id5.category"),
-      date: t("newsPage.id5.date"),
-      image: img1,
-      content: t("newsPage.id5.content"),
-    },
-  ];
-
-  const article = useMemo(
-    () =>
-      parseInt(id) === 1
-        ? mainArticle
-        : articles.find((a) => a.id === parseInt(id)),
-    [id, mainArticle, articles]
-  );
-
-  if (!article) {
-    return (
-      <div className="text-center p-10 text-red-600 text-lg">
-        Статья не найдена 😢
-      </div>
-    );
-  }
+  const article = getById(id);
+  const related = news.filter((n) => n.id !== parseInt(id));
 
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, []);
+  }, [id]);
 
   useEffect(() => {
     if (
-      swiperInstance &&
-      swiperInstance.params &&
-      swiperInstance.params.navigation &&
+      swiperInstance?.params?.navigation &&
       prevRef.current &&
-      nextRef.current &&
-      swiperInstance.params.navigation
+      nextRef.current
     ) {
       swiperInstance.params.navigation.prevEl = prevRef.current;
       swiperInstance.params.navigation.nextEl = nextRef.current;
@@ -95,137 +34,242 @@ export const News = () => {
       swiperInstance.navigation.init();
       swiperInstance.navigation.update();
     }
-  }, [swiperInstance, prevRef, nextRef]);
+  }, [swiperInstance]);
 
-  return (
-    <div className="bg-gray-50 min-h-screen">
-      <div className="max-w-5xl mx-auto px-4 py-12">
-        <Link
-          to="/news"
-          className="inline-flex items-center text-white hover:bg-red-900 transform transition duration-300 mb-8 bg-bordo rounded p-2"
-        >
-          <ArrowLeft className="w-5 h-5 mr-2" />
-          Назад к новостям
-        </Link>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="mb-6"
-        >
-          <p className="text-sm text-gray-500 uppercase font-medium tracking-widest">
-            {article.category} • {article.date}
-          </p>
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 leading-tight mt-2">
-            {article.title}
-          </h1>
-        </motion.div>
-
-        <motion.img
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          src={article.image}
-          alt={article.title}
-          loading="lazy"
-          className="w-full h-[400px] object-cover rounded shadow-xl mb-10"
-        />
-
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="prose prose-lg prose-gray max-w-none"
-        >
-          {article.content.split("\n").map((p, idx) => (
-            <p key={idx}>{p.trim()}</p>
-          ))}
-        </motion.div>
-
-        <div className="relative w-full max-w-6xl mx-auto py-10">
-          <button
-            aria-label="Previous slide"
-            ref={prevRef}
-            className="absolute -left-12 top-1/2 -translate-y-1/2 z-10 bg-white shadow-md rounded-full p-3 hover:bg-gray-200 transition-all"
-          >
-            <svg
-              className="w-6 h-6 text-bordo"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M15 19l-7-7 7-7"
-              />
-            </svg>
-          </button>
-
-          <button
-            aria-label="Next slide"
-            ref={nextRef}
-            className="absolute -right-12 top-1/2 -translate-y-1/2 z-10 bg-white shadow-md rounded-full p-3 hover:bg-gray-200 transition-all"
-          >
-            <svg
-              className="w-6 h-6 text-bordo"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M9 5l7 7-7 7"
-              />
-            </svg>
-          </button>
-
-          <Swiper
-            watchOverflow={true}
-            onSwiper={setSwiperInstance}
-            modules={[Navigation]}
-            spaceBetween={20}
-            slidesPerView={1}
-            breakpoints={{
-              768: { slidesPerView: 2 },
-              1024: { slidesPerView: 3 },
-            }}
-            navigation={{ prevEl: prevRef.current, nextEl: nextRef.current }}
-          >
-            {[mainArticle, ...articles]
-              .filter((a) => a.id !== parseInt(id))
-              .map((item) => (
-                <SwiperSlide key={item.id}>
-                  <Link to={`/news/${item.id}`}>
-                    <motion.div
-                      initial={{ opacity: 0, y: 30 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.5 }}
-                      className="relative shadow-lg rounded overflow-hidden"
-                    >
-                      <img
-                        src={item.image}
-                        alt={item.title}
-                        className="w-full h-64 object-cover"
-                      />
-                      <div className="p-4 absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/70 text-white">
-                        <p className="text-sm font-semibold">{item.category}</p>
-                        <h2 className="text-lg font-bold mt-1 line-clamp-2">
-                          {item.title}
-                        </h2>
-                      </div>
-                    </motion.div>
-                  </Link>
-                </SwiperSlide>
-              ))}
-          </Swiper>
+  if (loading) {
+    return (
+      <div
+        className="min-h-screen flex items-center justify-center"
+        style={{ background: "#F8F2F4" }}
+      >
+        <div className="space-y-4 w-full max-w-3xl px-6 animate-pulse">
+          <div className="h-6 rounded-full w-32" style={{ background: "#63001F22" }} />
+          <div className="h-10 rounded-xl w-3/4" style={{ background: "#63001F22" }} />
+          <div className="h-72 rounded-2xl" style={{ background: "#63001F11" }} />
         </div>
       </div>
+    );
+  }
+
+  if (!article) {
+    return (
+      <div
+        className="min-h-screen flex flex-col items-center justify-center gap-4"
+        style={{ background: "#F8F2F4" }}
+      >
+        <p className="text-5xl">📰</p>
+        <p className="text-xl font-bold" style={{ color: "#63001F" }}>
+          Статья не найдена
+        </p>
+        <Link
+          to="/news"
+          className="px-5 py-2.5 rounded-xl text-sm font-bold text-white"
+          style={{ background: "#63001F" }}
+        >
+          ← Вернуться к новостям
+        </Link>
+      </div>
+    );
+  }
+
+  return (
+    <div className="min-h-screen" style={{ background: "#F8F2F4" }}>
+      {/* ── HERO ARTICLE ── */}
+      <div
+        className="relative overflow-hidden"
+        style={{
+          background:
+            "linear-gradient(135deg, #63001F 0%, #8B0032 60%, #A0003A 100%)",
+        }}
+      >
+        <div
+          className="absolute -top-16 -right-16 w-72 h-72 rounded-full opacity-10"
+          style={{ background: "#C4973A" }}
+        />
+        <div className="relative max-w-5xl mx-auto px-6 pt-10 pb-14">
+          <Link
+            to="/news"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-bold text-white/80 hover:text-white hover:bg-white/10 transition-all duration-200 mb-8"
+          >
+            <ArrowLeft className="w-4 h-4" />
+            Назад к новостям
+          </Link>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.55 }}
+          >
+            <div className="flex items-center gap-3 mb-4">
+              <span
+                className="text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full"
+                style={{ background: "#C4973A", color: "#fff" }}
+              >
+                {article.category}
+              </span>
+              <span className="text-white/50 text-sm">{article.date}</span>
+            </div>
+            <h1 className="text-3xl md:text-5xl font-bold text-white leading-tight max-w-3xl">
+              {article.title}
+            </h1>
+          </motion.div>
+        </div>
+      </div>
+
+      {/* ── КОНТЕНТ ── */}
+      <div className="max-w-5xl mx-auto px-6 mt-10 pb-12">
+        {/* Изображение */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.15 }}
+          className="rounded-2xl overflow-hidden mb-10"
+          style={{
+            boxShadow: "0 8px 40px rgba(99,0,31,0.2)",
+            border: "3px solid #C4973A44",
+          }}
+        >
+          <img
+            src={article.image}
+            alt={article.title}
+            loading="lazy"
+            className="w-full object-cover"
+            style={{ maxHeight: 420 }}
+          />
+        </motion.div>
+
+        {/* Текст статьи */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className="rounded-2xl p-8"
+          style={{
+            background: "#fff",
+            border: "2px solid #63001F11",
+            boxShadow: "0 4px 20px rgba(99,0,31,0.06)",
+          }}
+        >
+          <div
+            className="w-12 h-1 rounded-full mb-6"
+            style={{ background: "#C4973A" }}
+          />
+          <div className="space-y-4">
+            {article.content?.split("\n").map((p, idx) => (
+              <p
+                key={idx}
+                className="text-base leading-relaxed"
+                style={{ color: "#63001F99" }}
+              >
+                {p.trim()}
+              </p>
+            ))}
+          </div>
+        </motion.div>
+      </div>
+
+      {/* ── ДРУГИЕ НОВОСТИ ── */}
+      {related.length > 0 && (
+        <div
+          className="py-14"
+          style={{
+            background:
+              "linear-gradient(180deg, #F8F2F4 0%, #fff 100%)",
+          }}
+        >
+          <div className="max-w-5xl mx-auto px-6">
+            <div className="flex items-center gap-4 mb-8">
+              <h2 className="text-2xl font-bold" style={{ color: "#63001F" }}>
+                Читайте также
+              </h2>
+              <div
+                className="flex-1 h-px"
+                style={{ background: "linear-gradient(90deg, #C4973A44, transparent)" }}
+              />
+            </div>
+
+            <div className="relative">
+              <button
+                ref={prevRef}
+                aria-label="Предыдущий"
+                className="absolute -left-5 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full flex items-center justify-center text-white transition-all duration-200 hover:scale-110"
+                style={{ background: "#63001F", boxShadow: "0 4px 12px rgba(99,0,31,0.3)" }}
+              >
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+                </svg>
+              </button>
+
+              <button
+                ref={nextRef}
+                aria-label="Следующий"
+                className="absolute -right-5 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full flex items-center justify-center text-white transition-all duration-200 hover:scale-110"
+                style={{ background: "#63001F", boxShadow: "0 4px 12px rgba(99,0,31,0.3)" }}
+              >
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                </svg>
+              </button>
+
+              <Swiper
+                onSwiper={setSwiperInstance}
+                modules={[Navigation]}
+                spaceBetween={16}
+                slidesPerView={1}
+                breakpoints={{
+                  640: { slidesPerView: 2 },
+                  1024: { slidesPerView: 3 },
+                }}
+                navigation={{ prevEl: prevRef.current, nextEl: nextRef.current }}
+              >
+                {related.map((item) => (
+                  <SwiperSlide key={item.id}>
+                    <Link to={`/news/${item.id}`} className="block group">
+                      <motion.div
+                        whileHover={{ y: -4 }}
+                        transition={{ duration: 0.2 }}
+                        className="rounded-2xl overflow-hidden"
+                        style={{
+                          boxShadow: "0 4px 20px rgba(99,0,31,0.1)",
+                          border: "2px solid transparent",
+                        }}
+                      >
+                        <div className="relative">
+                          <img
+                            src={item.image}
+                            alt={item.title}
+                            className="w-full object-cover transition-transform duration-400 group-hover:scale-105"
+                            style={{ height: 180 }}
+                          />
+                          <div
+                            className="absolute inset-0"
+                            style={{
+                              background:
+                                "linear-gradient(to top, rgba(99,0,31,0.85) 0%, transparent 60%)",
+                            }}
+                          />
+                          <div className="absolute bottom-0 left-0 right-0 p-4">
+                            <span
+                              className="text-xs font-bold px-2 py-0.5 rounded-full"
+                              style={{ background: "#C4973A", color: "#fff" }}
+                            >
+                              {item.category}
+                            </span>
+                            <p className="text-white font-bold text-sm mt-2 line-clamp-2">
+                              {item.title}
+                            </p>
+                            <p className="text-white/50 text-xs mt-1">{item.date}</p>
+                          </div>
+                        </div>
+                      </motion.div>
+                    </Link>
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

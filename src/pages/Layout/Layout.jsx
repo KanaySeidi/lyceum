@@ -3,34 +3,21 @@ import { Outlet, useLocation } from "react-router-dom";
 import Header from "../../components/organisms/Header";
 import Footer from "../../components/organisms/Footer";
 import AdminSidebar from "../admin/adminSidebar/AdminSidebar";
-import { useNavigate } from "react-router-dom";
 
 const Layout = () => {
   const { pathname } = useLocation();
-
-  const isAdminPath = pathname.includes("admin");
-
-  const Navigate = useNavigate();
-
-  const goHome = () => {
-    Navigate("/");
-  };
+  const isLoginPage = pathname === "/admin/sign";
+  const isAdminPath = pathname.includes("admin") && !isLoginPage;
 
   return (
     <div>
-      {isAdminPath ? <AdminSidebar /> : <Header />}
-      <button
-        className="fixed right-6 top-4 text-6xl text-white"
-        onClick={goHome}
-      >
-        ×
-      </button>
+      {isLoginPage ? null : isAdminPath ? <AdminSidebar /> : <Header />}
       <main>
         <Suspense fallback={null}>
           <Outlet />
         </Suspense>
       </main>
-{isAdminPath ? null : <Footer />}
+{!isAdminPath && !isLoginPage ? <Footer /> : null}
     </div>
   );
 };

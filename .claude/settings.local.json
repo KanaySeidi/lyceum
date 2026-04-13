@@ -6,7 +6,14 @@
       "Bash(perl -i -pe 's/[123] уровень: //g' public/locales/RU/translation.json)",
       "Bash(perl -i -pe 's/[123]-деңгээл::? ?–? ?//g' public/locales/KG/translation.json)",
       "Bash(perl -i -pe 's/[123]-деңгээл::? ?//g' /Users/kanayseidi/Desktop/PLIT/public/locales/KG/translation.json)",
-      "Bash(perl:*)"
+      "Bash(perl:*)",
+      "Bash(curl -sL \"https://picsum.photos/seed/hackathon/800/500\" -o /Users/kanayseidi/Desktop/PLIT/public/news/news1.jpg)",
+      "Bash(curl -sL \"https://picsum.photos/seed/artificial/800/500\" -o /Users/kanayseidi/Desktop/PLIT/public/news/news2.jpg)",
+      "Bash(curl -sL \"https://picsum.photos/seed/partnership/800/500\" -o /Users/kanayseidi/Desktop/PLIT/public/news/news3.jpg)",
+      "Bash(curl -sL \"https://picsum.photos/seed/openday/800/500\" -o /Users/kanayseidi/Desktop/PLIT/public/news/news4.jpg)",
+      "Bash(curl -sL \"https://picsum.photos/seed/graduates/800/500\" -o /Users/kanayseidi/Desktop/PLIT/public/news/news5.jpg)",
+      "Bash(npm run:*)",
+      "Bash(npx vercel:*)"
     ]
   }
 }
