@@ -30,7 +30,7 @@ const StaffCard = ({ person, index }) => (
       <img
         src={person.img}
         alt={person.name}
-        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+        className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
       />
       <div
         className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
@@ -104,9 +104,9 @@ const TeacherSl = () => {
       </div>
 
       {/* ── ТАБЫ ── */}
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 py-5 sm:py-8 overflow-x-auto">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 py-5 sm:py-8 flex justify-center overflow-x-auto">
         <div
-          className="inline-flex rounded-2xl p-1.5 gap-1 min-w-max"
+          className="inline-flex rounded-2xl p-1 gap-0.5 sm:p-1.5 sm:gap-1 mx-auto"
           style={{ background: "#fff", boxShadow: "0 2px 16px rgba(26,63,160,0.1)" }}
         >
           {TABS.map((tab) => {
@@ -115,7 +115,7 @@ const TeacherSl = () => {
               <button
                 key={tab.key}
                 onClick={() => setTab(tab.key)}
-                className="relative px-3 sm:px-5 py-2 sm:py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all duration-250 flex items-center gap-1.5 sm:gap-2"
+                className="relative px-2.5 sm:px-5 py-2 sm:py-2.5 rounded-xl text-[11px] min-[380px]:text-xs sm:text-sm font-bold transition-all duration-250 flex items-center gap-1 sm:gap-2 whitespace-nowrap"
                 style={{
                   background: active ? "#1A3FA0" : "transparent",
                   color: active ? "#fff" : "#1A3FA099",

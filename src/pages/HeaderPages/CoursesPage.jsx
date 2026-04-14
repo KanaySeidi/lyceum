@@ -206,7 +206,7 @@ const CoursesPage = () => {
       {/* Сетка карточек */}
       <div className="max-w-6xl mx-auto px-3 sm:px-6 py-6 sm:py-10">
         <p className="text-sm text-gray-400 mb-4 sm:mb-6">
-          {t("coursesPage.found", { count: visibleCourses.length })}
+          {t("coursesPage.foundLabel", { count: visibleCourses.length })}
         </p>
         <motion.div
           layout
