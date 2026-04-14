@@ -9,7 +9,7 @@ const Backend = () => {
     <DirectionPage
       image={img} image1={img2}
       name={t("backend.name")}
-      tagline="Строим архитектуру, на которой держится весь цифровой мир"
+      tagline={t("backend.tagline")}
       title={t("backend.title")}   text={t("backend.text")}
       master={t("backend.master")}
       lvl1={t("backend.1lvl")}    lvl2={t("backend.2lvl")}  lvl3={t("backend.3lvl")}

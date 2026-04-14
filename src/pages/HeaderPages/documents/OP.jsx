@@ -23,7 +23,7 @@ const OP = () => {
                 onClick={() => handleToggle("webDeveloper")}
                 className="group flex w-full items-center justify-between border-b border-gray-300 pb-4"
               >
-                <span className="text-lg font-semibold bg-bordo text-white px-2 py-1 rounded transition-colors">
+                <span className="text-lg font-semibold bg-[#1A3FA0] text-white px-2 py-1 rounded transition-colors">
                   {t("docsprograms.webDeveloper")}
                 </span>
                 <motion.div
@@ -44,7 +44,7 @@ const OP = () => {
                     transition={{ duration: 0.4 }}
                     className="mt-4 p-4 border border-gray-300 rounded-lg bg-gray-50"
                   >
-                    <p className="text-xl font-bold text-bordo text-center mb-4">
+                    <p className="text-xl font-bold text-[#1A3FA0] text-center mb-4">
                       {t("docsdescriptions.webDeveloper")}
                     </p>
                     <div className="flex flex-col gap-2">
@@ -77,7 +77,7 @@ const OP = () => {
                           rel="noopener noreferrer"
                           whileHover={{ scale: 1.03 }}
                           whileTap={{ scale: 0.98 }}
-                          className="inline-block px-4 py-2 text-sm font-medium text-white bg-bordo rounded-lg shadow-md transition"
+                          className="inline-block px-4 py-2 text-sm font-medium text-white bg-[#1A3FA0] rounded-lg shadow-md transition"
                         >
                           {text}
                         </motion.a>
@@ -98,7 +98,7 @@ const OP = () => {
                 onClick={() => handleToggle("frontendDeveloper")}
                 className="group flex w-full items-center justify-between border-b border-gray-300 pb-4"
               >
-                <span className="text-lg font-semibold bg-bordo text-white px-2 py-1 rounded transition-colors">
+                <span className="text-lg font-semibold bg-[#1A3FA0] text-white px-2 py-1 rounded transition-colors">
                   {t("docsprograms.frontendDeveloper")}
                 </span>
                 <motion.div
@@ -119,7 +119,7 @@ const OP = () => {
                     transition={{ duration: 0.4 }}
                     className="mt-4 p-4 border border-gray-300 rounded-lg bg-gray-50"
                   >
-                    <p className="text-xl font-bold text-bordo text-center mb-4">
+                    <p className="text-xl font-bold text-[#1A3FA0] text-center mb-4">
                       {t("docsdescriptions.frontendDeveloper")}
                     </p>
                     <div className="flex flex-col gap-2">
@@ -160,7 +160,7 @@ const OP = () => {
                           rel="noopener noreferrer"
                           whileHover={{ scale: 1.03 }}
                           whileTap={{ scale: 0.98 }}
-                          className="inline-block px-4 py-2 text-sm font-medium text-white bg-bordo rounded-lg shadow-md transition"
+                          className="inline-block px-4 py-2 text-sm font-medium text-white bg-[#1A3FA0] rounded-lg shadow-md transition"
                         >
                           {text}
                         </motion.a>
@@ -181,7 +181,7 @@ const OP = () => {
                 onClick={() => handleToggle("backendDeveloper")}
                 className="group flex w-full items-center justify-between border-b border-gray-300 pb-4"
               >
-                <span className="text-lg font-semibold bg-bordo text-white px-2 py-1 rounded transition-colors">
+                <span className="text-lg font-semibold bg-[#1A3FA0] text-white px-2 py-1 rounded transition-colors">
                   {t("docsprograms.backendDeveloper")}
                 </span>
                 <motion.div
@@ -200,7 +200,7 @@ const OP = () => {
                     transition={{ duration: 0.4 }}
                     className="mt-4 p-4 border border-gray-300 rounded-lg bg-gray-50"
                   >
-                    <p className="text-xl font-bold text-bordo text-center mb-4">
+                    <p className="text-xl font-bold text-[#1A3FA0] text-center mb-4">
                       {t("docsdescriptions.backendDeveloper")}
                     </p>
                     <div className="flex flex-col gap-2">
@@ -241,7 +241,7 @@ const OP = () => {
                           rel="noopener noreferrer"
                           whileHover={{ scale: 1.03 }}
                           whileTap={{ scale: 0.98 }}
-                          className="inline-block px-4 py-2 text-sm font-medium text-white bg-bordo rounded-lg shadow-md transition"
+                          className="inline-block px-4 py-2 text-sm font-medium text-white bg-[#1A3FA0] rounded-lg shadow-md transition"
                         >
                           {text}
                         </motion.a>
@@ -262,7 +262,7 @@ const OP = () => {
                 onClick={() => handleToggle("carMechanic")}
                 className="group flex w-full items-center justify-between border-b border-gray-300 pb-4"
               >
-                <span className="text-lg font-semibold bg-bordo text-white px-2 py-1 rounded transition-colors">
+                <span className="text-lg font-semibold bg-[#1A3FA0] text-white px-2 py-1 rounded transition-colors">
                   {t("docsprograms.carMechanic")}
                 </span>
                 <motion.div
@@ -281,7 +281,7 @@ const OP = () => {
                     transition={{ duration: 0.4 }}
                     className="mt-4 p-4 border border-gray-300 rounded-lg bg-gray-50"
                   >
-                    <p className="text-xl font-bold text-bordo text-center mb-4">
+                    <p className="text-xl font-bold text-[#1A3FA0] text-center mb-4">
                       {t("docsdescriptions.carMechanic")}
                     </p>
                     <div className="flex flex-col gap-2">
@@ -318,7 +318,7 @@ const OP = () => {
                           rel="noopener noreferrer"
                           whileHover={{ scale: 1.03 }}
                           whileTap={{ scale: 0.98 }}
-                          className="inline-block px-4 py-2 text-sm font-medium text-white bg-bordo rounded-lg shadow-md transition"
+                          className="inline-block px-4 py-2 text-sm font-medium text-white bg-[#1A3FA0] rounded-lg shadow-md transition"
                         >
                           {text}
                         </motion.a>
@@ -339,7 +339,7 @@ const OP = () => {
                 onClick={() => handleToggle("designTechnology")}
                 className="group flex w-full items-center justify-between border-b border-gray-300 pb-4"
               >
-                <span className="text-lg font-semibold bg-bordo text-white px-2 py-1 rounded transition-colors">
+                <span className="text-lg font-semibold bg-[#1A3FA0] text-white px-2 py-1 rounded transition-colors">
                   {t("docsprograms.designTechnology")}
                 </span>
                 <motion.div
@@ -358,7 +358,7 @@ const OP = () => {
                     transition={{ duration: 0.4 }}
                     className="mt-4 p-4 border border-gray-300 rounded-lg bg-gray-50"
                   >
-                    <p className="text-xl font-bold text-bordo text-center mb-4">
+                    <p className="text-xl font-bold text-[#1A3FA0] text-center mb-4">
                       {t("docsdescriptions.designTechnology")}
                     </p>
                     <div className="flex flex-col gap-2">
@@ -387,7 +387,7 @@ const OP = () => {
                           rel="noopener noreferrer"
                           whileHover={{ scale: 1.03 }}
                           whileTap={{ scale: 0.98 }}
-                          className="inline-block px-4 py-2 text-sm font-medium text-white bg-bordo rounded-lg shadow-md transition"
+                          className="inline-block px-4 py-2 text-sm font-medium text-white bg-[#1A3FA0] rounded-lg shadow-md transition"
                         >
                           {text}
                         </motion.a>
@@ -408,7 +408,7 @@ const OP = () => {
                 onClick={() => handleToggle("systemAdministrator")}
                 className="group flex w-full items-center justify-between border-b border-gray-300 pb-4"
               >
-                <span className="text-lg font-semibold bg-bordo text-white px-2 py-1 rounded transition-colors">
+                <span className="text-lg font-semibold bg-[#1A3FA0] text-white px-2 py-1 rounded transition-colors">
                   {t("docsprograms.systemAdministrator")}
                 </span>
                 <motion.div
@@ -428,7 +428,7 @@ const OP = () => {
                     transition={{ duration: 0.4 }}
                     className="mt-4 p-4 border border-gray-300 rounded-lg bg-gray-50"
                   >
-                    <p className="text-xl font-bold text-bordo text-center mb-4">
+                    <p className="text-xl font-bold text-[#1A3FA0] text-center mb-4">
                       {t("docsdescriptions.systemAdministrator")}
                     </p>
                     <div className="flex flex-col gap-2">
@@ -465,7 +465,7 @@ const OP = () => {
                           rel="noopener noreferrer"
                           whileHover={{ scale: 1.03 }}
                           whileTap={{ scale: 0.98 }}
-                          className="inline-block px-4 py-2 text-sm font-medium text-white bg-bordo rounded-lg shadow-md transition"
+                          className="inline-block px-4 py-2 text-sm font-medium text-white bg-[#1A3FA0] rounded-lg shadow-md transition"
                         >
                           {text}
                         </motion.a>
@@ -486,7 +486,7 @@ const OP = () => {
                 onClick={() => handleToggle("mechatronicsOperator")}
                 className="group flex w-full items-center justify-between border-b border-gray-300 pb-4"
               >
-                <span className="text-lg font-semibold bg-bordo text-white px-2 py-1 rounded transition-colors">
+                <span className="text-lg font-semibold bg-[#1A3FA0] text-white px-2 py-1 rounded transition-colors">
                   {t("docsprograms.mechatronicsOperator")}
                 </span>
                 <motion.div
@@ -505,7 +505,7 @@ const OP = () => {
                     transition={{ duration: 0.4 }}
                     className="mt-4 p-4 border border-gray-300 rounded-lg bg-gray-50"
                   >
-                    <p className="text-xl font-bold text-bordo text-center mb-4">
+                    <p className="text-xl font-bold text-[#1A3FA0] text-center mb-4">
                       {t("docsdescriptions.mechatronicsOperator")}
                     </p>
                     <div className="flex flex-col gap-2">
@@ -546,7 +546,7 @@ const OP = () => {
                           rel="noopener noreferrer"
                           whileHover={{ scale: 1.03 }}
                           whileTap={{ scale: 0.98 }}
-                          className="inline-block px-4 py-2 text-sm font-medium text-white bg-bordo rounded-lg shadow-md transition"
+                          className="inline-block px-4 py-2 text-sm font-medium text-white bg-[#1A3FA0] rounded-lg shadow-md transition"
                         >
                           {text}
                         </motion.a>
@@ -567,7 +567,7 @@ const OP = () => {
                 onClick={() => handleToggle("mechatronics")}
                 className="group flex w-full items-center justify-between border-b border-gray-300 pb-4"
               >
-                <span className="text-lg font-semibold bg-bordo text-white px-2 py-1 rounded transition-colors">
+                <span className="text-lg font-semibold bg-[#1A3FA0] text-white px-2 py-1 rounded transition-colors">
                   {t("docsprograms.mechatronics")}
                 </span>
                 <motion.div
@@ -587,7 +587,7 @@ const OP = () => {
                     transition={{ duration: 0.4 }}
                     className="mt-4 p-4 border border-gray-300 rounded-lg bg-gray-50"
                   >
-                    <p className="text-xl font-bold text-bordo text-center mb-4">
+                    <p className="text-xl font-bold text-[#1A3FA0] text-center mb-4">
                       {t("docsdescriptions.mechatronics")}
                     </p>
                     <div className="flex flex-col gap-2">
@@ -624,7 +624,7 @@ const OP = () => {
                           rel="noopener noreferrer"
                           whileHover={{ scale: 1.03 }}
                           whileTap={{ scale: 0.98 }}
-                          className="inline-block px-4 py-2 text-sm font-medium text-white bg-bordo rounded-lg shadow-md transition"
+                          className="inline-block px-4 py-2 text-sm font-medium text-white bg-[#1A3FA0] rounded-lg shadow-md transition"
                         >
                           {text}
                         </motion.a>
@@ -645,7 +645,7 @@ const OP = () => {
                 onClick={() => handleToggle("mobileDeveloper")}
                 className="group flex w-full items-center justify-between border-b border-gray-300 pb-4"
               >
-                <span className="text-lg font-semibold bg-bordo text-white px-2 py-1 rounded transition-colors">
+                <span className="text-lg font-semibold bg-[#1A3FA0] text-white px-2 py-1 rounded transition-colors">
                   {t("docsprograms.mobileDeveloper")}
                 </span>
                 <motion.div
@@ -665,7 +665,7 @@ const OP = () => {
                     transition={{ duration: 0.4 }}
                     className="mt-4 p-4 border border-gray-300 rounded-lg bg-gray-50"
                   >
-                    <p className="text-xl font-bold text-bordo text-center mb-4">
+                    <p className="text-xl font-bold text-[#1A3FA0] text-center mb-4">
                       {t("docsdescriptions.mobileDeveloper")}
                     </p>
                     <div className="flex flex-col gap-2">
@@ -706,7 +706,7 @@ const OP = () => {
                           rel="noopener noreferrer"
                           whileHover={{ scale: 1.03 }}
                           whileTap={{ scale: 0.98 }}
-                          className="inline-block px-4 py-2 text-sm font-medium text-white bg-bordo rounded-lg shadow-md transition"
+                          className="inline-block px-4 py-2 text-sm font-medium text-white bg-[#1A3FA0] rounded-lg shadow-md transition"
                         >
                           {text}
                         </motion.a>
@@ -727,7 +727,7 @@ const OP = () => {
                 onClick={() => handleToggle("sewingDesign")}
                 className="group flex w-full items-center justify-between border-b border-gray-300 pb-4"
               >
-                <span className="text-lg font-semibold bg-bordo text-white px-2 py-1 rounded transition-colors">
+                <span className="text-lg font-semibold bg-[#1A3FA0] text-white px-2 py-1 rounded transition-colors">
                   {t("docsprograms.sewingDesign")}
                 </span>
                 <motion.div
@@ -747,7 +747,7 @@ const OP = () => {
                     transition={{ duration: 0.4 }}
                     className="mt-4 p-4 border border-gray-300 rounded-lg bg-gray-50"
                   >
-                    <p className="text-xl font-bold text-bordo text-center mb-4">
+                    <p className="text-xl font-bold text-[#1A3FA0] text-center mb-4">
                       {t("docsdescriptions.sewingDesign")}
                     </p>
                     <div className="flex flex-col gap-2">
@@ -784,7 +784,7 @@ const OP = () => {
                           rel="noopener noreferrer"
                           whileHover={{ scale: 1.03 }}
                           whileTap={{ scale: 0.98 }}
-                          className="inline-block px-4 py-2 text-sm font-medium text-white bg-bordo rounded-lg shadow-md transition"
+                          className="inline-block px-4 py-2 text-sm font-medium text-white bg-[#1A3FA0] rounded-lg shadow-md transition"
                         >
                           {text}
                         </motion.a>
@@ -805,7 +805,7 @@ const OP = () => {
                 onClick={() => handleToggle("informationSecurity")}
                 className="group flex w-full items-center justify-between border-b border-gray-300 pb-4"
               >
-                <span className="text-lg font-semibold bg-bordo text-white px-2 py-1 rounded transition-colors">
+                <span className="text-lg font-semibold bg-[#1A3FA0] text-white px-2 py-1 rounded transition-colors">
                   {t("docsprograms.informationSecurity")}
                 </span>
                 <motion.div
@@ -825,7 +825,7 @@ const OP = () => {
                     transition={{ duration: 0.4 }}
                     className="mt-4 p-4 border border-gray-300 rounded-lg bg-gray-50"
                   >
-                    <p className="text-xl font-bold text-bordo text-center mb-4">
+                    <p className="text-xl font-bold text-[#1A3FA0] text-center mb-4">
                       {t("docsdescriptions.informationSecurity")}
                     </p>
                     <div className="flex flex-col gap-2">
@@ -866,7 +866,7 @@ const OP = () => {
                           rel="noopener noreferrer"
                           whileHover={{ scale: 1.03 }}
                           whileTap={{ scale: 0.98 }}
-                          className="inline-block px-4 py-2 text-sm font-medium text-white bg-bordo rounded-lg shadow-md transition"
+                          className="inline-block px-4 py-2 text-sm font-medium text-white bg-[#1A3FA0] rounded-lg shadow-md transition"
                         >
                           {text}
                         </motion.a>
@@ -887,7 +887,7 @@ const OP = () => {
                 onClick={() => handleToggle("miningMechanic")}
                 className="group flex w-full items-center justify-between border-b border-gray-300 pb-4"
               >
-                <span className="text-lg font-semibold bg-bordo text-white px-2 py-1 rounded transition-colors">
+                <span className="text-lg font-semibold bg-[#1A3FA0] text-white px-2 py-1 rounded transition-colors">
                   {t("docsprograms.miningMechanic")}
                 </span>
                 <motion.div
@@ -907,7 +907,7 @@ const OP = () => {
                     transition={{ duration: 0.4 }}
                     className="mt-4 p-4 border border-gray-300 rounded-lg bg-gray-50"
                   >
-                    <p className="text-xl font-bold text-bordo text-center mb-4">
+                    <p className="text-xl font-bold text-[#1A3FA0] text-center mb-4">
                       {t("docsdescriptions.miningMechanic")}
                     </p>
                     <div className="flex flex-col gap-2">
@@ -940,7 +940,7 @@ const OP = () => {
                           rel="noopener noreferrer"
                           whileHover={{ scale: 1.03 }}
                           whileTap={{ scale: 0.98 }}
-                          className="inline-block px-4 py-2 text-sm font-medium text-white bg-bordo rounded-lg shadow-md transition"
+                          className="inline-block px-4 py-2 text-sm font-medium text-white bg-[#1A3FA0] rounded-lg shadow-md transition"
                         >
                           {text}
                         </motion.a>
@@ -961,7 +961,7 @@ const OP = () => {
                 onClick={() => handleToggle("carRepairMechanic")}
                 className="group flex w-full items-center justify-between border-b border-gray-300 pb-4"
               >
-                <span className="text-lg font-semibold bg-bordo text-white px-2 py-1 rounded transition-colors">
+                <span className="text-lg font-semibold bg-[#1A3FA0] text-white px-2 py-1 rounded transition-colors">
                   {t("docsprograms.carRepairMechanic")}
                 </span>
                 <motion.div
@@ -981,7 +981,7 @@ const OP = () => {
                     transition={{ duration: 0.4 }}
                     className="mt-4 p-4 border border-gray-300 rounded-lg bg-gray-50"
                   >
-                    <p className="text-xl font-bold text-bordo text-center mb-4">
+                    <p className="text-xl font-bold text-[#1A3FA0] text-center mb-4">
                       {t("docsdescriptions.carRepairMechanic")}
                     </p>
                     <div className="flex flex-col gap-2">
@@ -1034,7 +1034,7 @@ const OP = () => {
                           rel="noopener noreferrer"
                           whileHover={{ scale: 1.03 }}
                           whileTap={{ scale: 0.98 }}
-                          className="inline-block px-4 py-2 text-sm font-medium text-white bg-bordo rounded-lg shadow-md transition"
+                          className="inline-block px-4 py-2 text-sm font-medium text-white bg-[#1A3FA0] rounded-lg shadow-md transition"
                         >
                           {text}
                         </motion.a>

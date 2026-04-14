@@ -9,7 +9,7 @@ const TD = () => {
     <DirectionPage
       image={img} image1={img2}
       name={t("TD.name")}
-      tagline="Воплощаем идеи в визуальные решения, которые говорят сами за себя"
+      tagline={t("TD.tagline")}
       title={t("TD.title")}   text={t("TD.text")}
       master={t("TD.master")}
       lvl1={t("TD.1lvl")}    lvl2={t("TD.2lvl")}  lvl3={t("TD.3lvl")}

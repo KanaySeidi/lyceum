@@ -13,7 +13,15 @@
       "Bash(curl -sL \"https://picsum.photos/seed/openday/800/500\" -o /Users/kanayseidi/Desktop/PLIT/public/news/news4.jpg)",
       "Bash(curl -sL \"https://picsum.photos/seed/graduates/800/500\" -o /Users/kanayseidi/Desktop/PLIT/public/news/news5.jpg)",
       "Bash(npm run:*)",
-      "Bash(npx vercel:*)"
+      "Bash(npx vercel:*)",
+      "Bash(xargs sed:*)",
+      "Bash(sed -i '' -e 's/bg-bordo/bg-\\\\[#1A3FA0\\\\]/g' -e 's/text-bordo/text-\\\\[#1A3FA0\\\\]/g' /Users/kanayseidi/Desktop/PLIT/src/pages/Main/Main.jsx)",
+      "Bash(sed -i '' -e 's/text-bordo/text-\\\\[#1A3FA0\\\\]/g' -e 's/bg-bordo\\\\/5/bg-\\\\[#1A3FA0\\\\]\\\\/5/g' -e 's/bg-bordo\\\\/10/bg-\\\\[#1A3FA0\\\\]\\\\/10/g' -e 's/hover:text-bordo/hover:text-\\\\[#1A3FA0\\\\]/g' /Users/kanayseidi/Desktop/PLIT/src/components/molecules/ContactSection.jsx)",
+      "Bash(curl -sL \"https://images.pexels.com/photos/46798/the-ball-stadion-football-the-pitch-46798.jpeg?auto=compress&cs=tinysrgb&w=800\" -o /Users/kanayseidi/Desktop/PLIT/public/courses/s1.jpg)",
+      "Bash(curl -sL \"https://images.pexels.com/photos/1752757/pexels-photo-1752757.jpeg?auto=compress&cs=tinysrgb&w=800\" -o /Users/kanayseidi/Desktop/PLIT/public/courses/s2.jpg)",
+      "Bash(curl -sL \"https://images.pexels.com/photos/261185/pexels-photo-261185.jpeg?auto=compress&cs=tinysrgb&w=800\" -o /Users/kanayseidi/Desktop/PLIT/public/courses/s3.jpg)",
+      "Bash(curl -sL \"https://images.pexels.com/photos/267669/pexels-photo-267669.jpeg?auto=compress&cs=tinysrgb&w=800\" -o /Users/kanayseidi/Desktop/PLIT/public/courses/l1.jpg)",
+      "Bash(curl -sL \"https://images.pexels.com/photos/3807755/pexels-photo-3807755.jpeg?auto=compress&cs=tinysrgb&w=800\" -o /Users/kanayseidi/Desktop/PLIT/public/courses/l2.jpg)"
     ]
   }
 }

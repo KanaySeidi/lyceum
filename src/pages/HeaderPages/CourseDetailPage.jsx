@@ -1,23 +1,24 @@
 import { useParams, useLocation, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 import { FaClock, FaCalendarAlt, FaSignal, FaArrowLeft, FaPhone } from "react-icons/fa";
-import { MOCK_COURSES } from "./CoursesPage";
+import { getMockCourses } from "./CoursesPage";
 
 const CATEGORY_META = {
-  sports:       { label: "Спортивный",       gradient: "from-[#63001F] to-[#3a0012]" },
-  language:     { label: "Языковой",         gradient: "from-[#8B0030] to-[#63001F]" },
-  professional: { label: "Профессиональный", gradient: "from-[#63001F] to-[#1a0009]" },
+  sports:       { labelKey: "coursesPage.detail.categories.sports" },
+  language:     { labelKey: "coursesPage.detail.categories.language" },
+  professional: { labelKey: "coursesPage.detail.categories.professional" },
 };
 
-const getAllCourses = () => [
-  ...MOCK_COURSES.sports,
-  ...MOCK_COURSES.language,
-  ...MOCK_COURSES.professional,
+const getAllCourses = (t) => [
+  ...getMockCourses(t).sports,
+  ...getMockCourses(t).language,
+  ...getMockCourses(t).professional,
 ];
 
 const InfoRow = ({ icon, label, value }) => (
   <div className="flex items-start gap-3 py-3 border-b border-gray-100 last:border-0">
-    <div className="mt-0.5 text-bordo shrink-0">{icon}</div>
+    <div className="mt-0.5 text-[#1A3FA0] shrink-0">{icon}</div>
     <div>
       <p className="text-xs text-gray-400 font-medium uppercase tracking-wide">{label}</p>
       <p className="text-gray-800 font-semibold mt-0.5">{value}</p>
@@ -26,40 +27,55 @@ const InfoRow = ({ icon, label, value }) => (
 );
 
 const CourseDetailPage = () => {
+  const { t } = useTranslation();
   const { id } = useParams();
   const { state } = useLocation();
   const navigate = useNavigate();
 
   // Берём из state (быстро) или ищем в моках (при прямом переходе по URL)
-  const course = state?.course ?? getAllCourses().find((c) => c.id === id);
+  const localizedCourse = getAllCourses(t).find((c) => c.id === id);
+  const course = localizedCourse ?? state?.course;
 
   if (!course) {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center gap-4 bg-gray-100">
-        <p className="text-xl text-gray-600">Курс не найден</p>
+        <p className="text-xl text-gray-600">{t("coursesPage.detail.notFound")}</p>
         <button
           onClick={() => navigate("/courses")}
-          className="flex items-center gap-2 text-bordo font-semibold hover:underline"
+          className="flex items-center gap-2 text-[#1A3FA0] font-semibold hover:underline"
         >
-          <FaArrowLeft /> Назад к курсам
+          <FaArrowLeft /> {t("coursesPage.detail.backToCourses")}
         </button>
       </div>
     );
   }
 
-  const { gradient, label: categoryLabel } = CATEGORY_META[course.category] ?? CATEGORY_META.professional;
+  const { labelKey } = CATEGORY_META[course.category] ?? CATEGORY_META.professional;
 
   return (
     <div className="min-h-screen bg-gray-100">
-      {/* Hero */}
-      <div className={`relative bg-gradient-to-br ${gradient} text-white`}>
-        <div className="max-w-4xl mx-auto px-6 pt-10 pb-16">
+      {/* Hero с фото */}
+      <div className="relative overflow-hidden" style={{ minHeight: "clamp(300px, 56svh, 420px)" }}>
+        {/* Фото фон */}
+        {course.imagePreview ? (
+          <img
+            src={course.imagePreview}
+            alt={course.title}
+            className="absolute inset-0 w-full h-full object-cover"
+          />
+        ) : (
+          <div className="absolute inset-0" style={{ background: "linear-gradient(135deg, #1A3FA0 0%, #0F2E8F 100%)" }} />
+        )}
+        {/* Тёмный оверлей */}
+        <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(15,46,143,0.92) 0%, rgba(26,63,160,0.7) 50%, rgba(0,0,0,0.3) 100%)" }} />
+
+        <div className="relative max-w-4xl mx-auto px-4 sm:px-6 pt-8 sm:pt-10 pb-14 sm:pb-20">
           <button
             onClick={() => navigate("/courses")}
-            className="flex items-center gap-2 text-white/80 hover:text-white transition-colors duration-200 mb-8 text-sm font-medium"
+            className="flex items-center gap-2 text-white/80 hover:text-white transition-colors duration-200 mb-6 sm:mb-8 text-sm font-medium"
           >
             <FaArrowLeft />
-            Все курсы
+            {t("coursesPage.detail.allCourses")}
           </button>
 
           <motion.div
@@ -67,11 +83,12 @@ const CourseDetailPage = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4 }}
           >
-            <span className="inline-block bg-white/20 text-white text-xs font-semibold px-3 py-1 rounded-full mb-4 uppercase tracking-wide">
-              {categoryLabel}
+            <span className="inline-block text-xs font-bold px-3 py-1 rounded-full mb-4 uppercase tracking-wide"
+              style={{ background: "#C4973A", color: "#fff" }}>
+              {t(labelKey)}
             </span>
-            <h1 className="text-3xl md:text-5xl font-extrabold leading-tight">{course.title}</h1>
-            <p className="mt-4 text-white/80 text-lg max-w-2xl">{course.description}</p>
+            <h1 className="text-2xl sm:text-4xl md:text-5xl font-extrabold leading-tight text-white">{course.title}</h1>
+            <p className="mt-4 text-white/80 text-sm sm:text-base md:text-lg max-w-2xl leading-relaxed">{course.description}</p>
           </motion.div>
         </div>
 
@@ -80,42 +97,42 @@ const CourseDetailPage = () => {
       </div>
 
       {/* Контент */}
-      <div className="max-w-4xl mx-auto px-6 -mt-2 pb-16">
+      <div className="max-w-4xl mx-auto px-3 sm:px-6 -mt-2 pb-10 sm:pb-16">
         <motion.div
-          className="grid grid-cols-1 md:grid-cols-3 gap-6"
+          className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, delay: 0.15 }}
         >
           {/* Описание */}
-          <div className="md:col-span-2 bg-white rounded-2xl shadow-sm p-6 space-y-6">
+          <div className="lg:col-span-2 bg-white rounded-2xl shadow-sm p-4 sm:p-6 space-y-6">
             <div>
-              <h2 className="text-xl font-bold text-gray-900 mb-3">О курсе</h2>
-              <p className="text-gray-600 leading-relaxed">{course.fullDescription}</p>
+              <h2 className="text-xl font-bold text-gray-900 mb-3">{t("coursesPage.detail.aboutCourse")}</h2>
+              <p className="text-gray-600 text-sm sm:text-base leading-relaxed">{course.fullDescription}</p>
             </div>
           </div>
 
           {/* Боковая панель */}
           <div className="flex flex-col gap-4">
             {/* Цена и запись */}
-            <div className="bg-white rounded-2xl shadow-sm p-6 text-center">
-              <p className="text-3xl font-extrabold text-bordo">{course.price} <span className="text-lg font-semibold">сом</span></p>
-              <p className="text-xs text-gray-400 mt-1">за весь курс</p>
+            <div className="bg-white rounded-2xl shadow-sm p-4 sm:p-6 text-center">
+              <p className="text-2xl sm:text-3xl font-extrabold text-[#1A3FA0]">{course.price} <span className="text-base sm:text-lg font-semibold">{t("coursesPage.currency")}</span></p>
+              <p className="text-xs text-gray-400 mt-1">{t("coursesPage.detail.fullCourse")}</p>
               <a
                 href="tel:+996312123456"
-                className="mt-4 flex items-center justify-center gap-2 w-full bg-bordo text-white font-semibold py-3 rounded-xl hover:bg-red-900 transition-colors duration-200"
+                className="mt-4 flex items-center justify-center gap-2 w-full bg-[#1A3FA0] text-white font-semibold py-3 rounded-xl hover:bg-blue-800 transition-colors duration-200"
               >
                 <FaPhone />
-                Записаться
+                {t("coursesPage.detail.enroll")}
               </a>
             </div>
 
             {/* Детали */}
-            <div className="bg-white rounded-2xl shadow-sm p-6">
-              <h3 className="text-sm font-bold text-gray-900 mb-2 uppercase tracking-wide">Детали</h3>
-              <InfoRow icon={<FaClock />}       label="Длительность" value={course.duration} />
-              <InfoRow icon={<FaCalendarAlt />} label="Расписание"   value={course.schedule} />
-              <InfoRow icon={<FaSignal />}      label="Уровень"      value={course.level} />
+            <div className="bg-white rounded-2xl shadow-sm p-4 sm:p-6">
+              <h3 className="text-sm font-bold text-gray-900 mb-2 uppercase tracking-wide">{t("coursesPage.detail.details")}</h3>
+              <InfoRow icon={<FaClock />}       label={t("coursesPage.detail.duration")} value={course.duration} />
+              <InfoRow icon={<FaCalendarAlt />} label={t("coursesPage.detail.schedule")} value={course.schedule} />
+              <InfoRow icon={<FaSignal />}      label={t("coursesPage.detail.level")} value={course.level} />
             </div>
           </div>
         </motion.div>

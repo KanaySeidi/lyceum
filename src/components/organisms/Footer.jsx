@@ -20,9 +20,9 @@ const Footer = () => {
       initial={{ opacity: 0, y: 50 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8, ease: "easeOut" }}
-      className="bg-[#63001F] text-white px-4 py-10 border-t"
+      className="bg-[#1A3FA0] text-white px-4 py-8 sm:py-10 border-t"
     >
-      <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 text-center sm:text-left">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10 text-left">
         {/* Логотип и описание */}
         <motion.div
           initial={{ opacity: 0, x: -30 }}
@@ -33,12 +33,12 @@ const Footer = () => {
           <img
             src={logo}
             alt={t("footer.logoAlt")}
-            className="filter invert brightness-0 mb-4 w-48 sm:w-56 md:w-64 h-auto mx-auto"
+            className="filter invert brightness-0 mb-4 w-44 sm:w-56 md:w-64 h-auto sm:mx-auto"
           />
-          <h3 className="font-semibold text-lg pl-2 sm:pl-0">
+          <h3 className="font-semibold text-base sm:text-lg pl-0">
             {t("footer.title")}
           </h3>
-          <p className="mt-2 text-sm pl-2 sm:pl-0 pr-2 text-justify">
+          <p className="mt-2 text-sm pr-0 sm:pr-2 text-left sm:text-justify leading-relaxed">
             {t("footer.description")}
           </p>
         </motion.div>
@@ -48,7 +48,7 @@ const Footer = () => {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.7, delay: 0.4 }}
-          className="text-sm space-y-1 text-start ml-40"
+          className="text-sm space-y-1 text-left"
         >
           <h4 className="font-semibold mb-2 text-lg">
             {t("footer.pagesTitle")}
@@ -69,7 +69,7 @@ const Footer = () => {
           initial={{ opacity: 0, x: 30 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.7, delay: 0.6 }}
-          className="flex flex-col space-y-6 items-start sm:items-center text-left sm:text-center"
+          className="flex flex-col space-y-5 sm:space-y-6 items-start sm:items-center text-left sm:text-center"
         >
           <h4 className="font-semibold text-lg">{t("footer.contactTitle")}</h4>
           <div className="text-sm space-y-2">
@@ -94,7 +94,7 @@ const Footer = () => {
               href={instagramUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center w-12 h-12 rounded-full bg-[#d83529dc] hover:bg-[#b52a22] transition-colors"
+              className="flex items-center justify-center w-12 h-12 rounded-full bg-white/20 hover:bg-white/30 transition-colors"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -117,7 +117,7 @@ const Footer = () => {
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         transition={{ duration: 0.5, delay: 0.8 }}
-        className="mt-10 pt-4 border-t text-center text-sm md:text-base font-semibold"
+        className="mt-10 pt-4 border-t border-white/20 text-center text-sm md:text-base font-semibold"
       >
         <div>
           © {new Date().getFullYear()} «PLIT99». {t("footer.rights")}

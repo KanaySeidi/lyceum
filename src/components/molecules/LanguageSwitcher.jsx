@@ -44,7 +44,7 @@ const LanguageSwitcher = ({ showLabel = false }) => {
       >
         <Globe
           size={20}
-          className="transition-colors duration-200 group-hover:text-gold"
+          className="text-white transition-colors duration-200 group-hover:text-[#C4973A]"
         />
         {showLabel && (
           <span className="text-sm font-semibold">{current.key}</span>
@@ -57,9 +57,7 @@ const LanguageSwitcher = ({ showLabel = false }) => {
             top: ref.current
               ? ref.current.getBoundingClientRect().bottom + 8
               : 0,
-            left: ref.current
-              ? ref.current.getBoundingClientRect().left - 80
-              : 0,
+            right: 12,
           }}
         >
           {LANGUAGES.map((lang) => (
@@ -68,7 +66,7 @@ const LanguageSwitcher = ({ showLabel = false }) => {
               onClick={() => changeLanguage(lang.key)}
               className={`w-full text-left px-4 py-2.5 text-sm transition-colors duration-150 ${
                 current.key === lang.key
-                  ? "bg-bordo text-white font-semibold"
+                  ? "bg-[#1A3FA0] text-white font-semibold"
                   : "text-gray-700 hover:bg-gray-50"
               }`}
             >

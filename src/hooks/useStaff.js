@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import teacher1 from "../assets/img/teacher1.jpg";
 import teacher2 from "../assets/img/teacher2.jpg";
 import teacher3 from "../assets/img/teacher3.jpg";
@@ -13,38 +14,14 @@ import teacher10 from "../assets/img/teacher10.jpg";
 // TODO: заменить на API-вызов:
 // const res = await fetch(`${API_URL}/api/staff?type=${type}`)
 
-const mockManagement = [
-  { id: 1, name: "Руководитель 1", role: "Директор", img: teacher1 },
-  { id: 2, name: "Руководитель 2", role: "Заместитель директора", img: teacher2 },
-  { id: 3, name: "Руководитель 3", role: "Завуч по учебной части", img: teacher3 },
-  { id: 4, name: "Руководитель 4", role: "Завуч по воспитательной работе", img: teacher4 },
-];
-
-const mockTeachers = [
-  { id: 1, name: "Преподаватель 1",  role: "Преподаватель информатики",  img: teacher1 },
-  { id: 2, name: "Преподаватель 2",  role: "Преподаватель математики",   img: teacher2 },
-  { id: 3, name: "Преподаватель 3",  role: "Преподаватель физики",       img: teacher3 },
-  { id: 4, name: "Преподаватель 4",  role: "Преподаватель программирования", img: teacher4 },
-  { id: 5, name: "Преподаватель 5",  role: "Преподаватель английского",  img: teacher5 },
-  { id: 6, name: "Преподаватель 6",  role: "Преподаватель базы данных",  img: teacher6 },
-  { id: 7, name: "Преподаватель 7",  role: "Преподаватель сетей",        img: teacher7 },
-  { id: 8, name: "Преподаватель 8",  role: "Преподаватель веб-дизайна",  img: teacher8 },
-  { id: 9, name: "Преподаватель 9",  role: "Преподаватель кыргызского",  img: teacher9 },
-  { id: 10, name: "Преподаватель 10", role: "Преподаватель истории",     img: teacher10 },
-];
-
-const mockMasters = [
-  { id: 1, name: "Мастер 1",  role: "Мастер производственного обучения", img: teacher3 },
-  { id: 2, name: "Мастер 2",  role: "Мастер производственного обучения", img: teacher5 },
-  { id: 3, name: "Мастер 3",  role: "Мастер производственного обучения", img: teacher7 },
-  { id: 4, name: "Мастер 4",  role: "Мастер производственного обучения", img: teacher9 },
-  { id: 5, name: "Мастер 5",  role: "Мастер производственного обучения", img: teacher2 },
-  { id: 6, name: "Мастер 6",  role: "Мастер производственного обучения", img: teacher4 },
-  { id: 7, name: "Мастер 7",  role: "Мастер производственного обучения", img: teacher6 },
-  { id: 8, name: "Мастер 8",  role: "Мастер производственного обучения", img: teacher8 },
-];
+const staffImages = {
+  management: [teacher1, teacher2, teacher3, teacher4],
+  teachers: [teacher1, teacher2, teacher3, teacher4, teacher5, teacher6, teacher7, teacher8, teacher9, teacher10],
+  masters: [teacher3, teacher5, teacher7, teacher9, teacher2, teacher4, teacher6, teacher8],
+};
 
 export const useStaff = () => {
+  const { t, i18n } = useTranslation();
   const [data, setData] = useState({ management: [], teachers: [], masters: [] });
   const [loading, setLoading] = useState(true);
 
@@ -57,9 +34,22 @@ export const useStaff = () => {
     // ]);
     // setData({ management: mgmt, teachers: teach, masters: mast });
 
-    setData({ management: mockManagement, teachers: mockTeachers, masters: mockMasters });
+    const localizedStaff = t("mockStaff", { returnObjects: true });
+    const withImages = Object.fromEntries(
+      ["management", "teachers", "masters"].map((group) => [
+        group,
+        Array.isArray(localizedStaff[group])
+          ? localizedStaff[group].map((person, index) => ({
+              ...person,
+              img: staffImages[group][index],
+            }))
+          : [],
+      ])
+    );
+
+    setData(withImages);
     setLoading(false);
-  }, []);
+  }, [i18n.language, t]);
 
   return { data, loading };
 };

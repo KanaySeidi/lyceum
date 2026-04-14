@@ -9,7 +9,7 @@ const AutoMechanic = () => {
     <DirectionPage
       image={Cimg} image1={Cimg2}
       name={t("AutoMechanic.name")}
-      tagline="Диагностируем и возвращаем к жизни современные автомобили"
+      tagline={t("AutoMechanic.tagline")}
       title={t("AutoMechanic.title")}   text={t("AutoMechanic.text")}
       master={t("AutoMechanic.master")}
       lvl1={t("AutoMechanic.1lvl")}    lvl2={t("AutoMechanic.2lvl")}  lvl3={t("AutoMechanic.3lvl")}

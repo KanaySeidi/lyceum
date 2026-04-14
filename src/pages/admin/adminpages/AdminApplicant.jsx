@@ -140,7 +140,7 @@ const AdminApplicant = () => {
   return (
     <div className="bg-gray-400 mx-auto p-6 min-h-screen">
       <div className="max-w-7xl mx-auto p-6 bg-gray-50 rounded-3xl shadow-inner">
-        <h1 className="text-4xl font-bold text-end mb-10 text-bordo">
+        <h1 className="text-4xl font-bold text-end mb-10 text-[#1A3FA0]">
           {t("withStudents.applicants")}
         </h1>
 
@@ -167,7 +167,7 @@ const AdminApplicant = () => {
             ))}
             <button
               onClick={handleAddLeftBlock}
-              className="mt-2 text-sm text-white bg-bordo px-4 py-1 rounded-full"
+              className="mt-2 text-sm text-white bg-[#1A3FA0] px-4 py-1 rounded-full"
             >
               Добавить блок
             </button>
@@ -196,7 +196,7 @@ const AdminApplicant = () => {
               ))}
               <button
                 onClick={handleAddModalItem}
-                className="mt-2 self-center text-sm text-white bg-bordo px-4 py-1 rounded-full"
+                className="mt-2 self-center text-sm text-white bg-[#1A3FA0] px-4 py-1 rounded-full"
               >
                 Добавить пункт
               </button>
@@ -280,7 +280,7 @@ const AdminApplicant = () => {
             ))}
             <button
               onClick={handleAddMedia}
-              className="text-sm text-white bg-bordo px-4 py-1 rounded-full"
+              className="text-sm text-white bg-[#1A3FA0] px-4 py-1 rounded-full"
             >
               Добавить медиа
             </button>
@@ -290,7 +290,7 @@ const AdminApplicant = () => {
 
       {/* Нижняя секция */}
       <div className="max-w-7xl mx-auto mt-10 px-4">
-        <div className="bg-white rounded-3xl border p-4 flex flex-col md:flex-row gap-6 shadow ring-1 ring-bordo/30">
+        <div className="bg-white rounded-3xl border p-4 flex flex-col md:flex-row gap-6 shadow ring-1 ring-[#1A3FA0]/30">
           <div className="md:w-[30%] text-gray-800 space-y-2">
             {bottomLeft.map((text, idx) => (
               <div key={idx} className="relative">
@@ -310,7 +310,7 @@ const AdminApplicant = () => {
             ))}
             <button
               onClick={handleAddBottomLeft}
-              className="mt-2 text-sm text-white bg-bordo px-4 py-1 rounded-full"
+              className="mt-2 text-sm text-white bg-[#1A3FA0] px-4 py-1 rounded-full"
             >
               Добавить
             </button>
@@ -346,7 +346,7 @@ const AdminApplicant = () => {
             ))}
             <button
               onClick={handleAddBottomRight}
-              className="mt-2 text-sm text-white bg-bordo px-4 py-1 rounded-full"
+              className="mt-2 text-sm text-white bg-[#1A3FA0] px-4 py-1 rounded-full"
             >
               Добавить
             </button>
@@ -356,7 +356,7 @@ const AdminApplicant = () => {
 
       {/* FAQ */}
       <div className="max-w-7xl mx-auto mt-16 px-4 mb-12">
-        <h2 className="text-3xl font-bold text-bordo mb-8 text-center">
+        <h2 className="text-3xl font-bold text-[#1A3FA0] mb-8 text-center">
           {t("faq.title")}
         </h2>
         <div className="space-y-4">
@@ -406,7 +406,7 @@ const AdminApplicant = () => {
           ))}
           <button
             onClick={handleAddFaq}
-            className="mt-4 text-sm text-white bg-bordo px-4 py-2 rounded-full block mx-auto"
+            className="mt-4 text-sm text-white bg-[#1A3FA0] px-4 py-2 rounded-full block mx-auto"
           >
             Добавить вопрос
           </button>

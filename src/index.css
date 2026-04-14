@@ -12,5 +12,29 @@
 }
 
 body {
-  background-color: #9ca3af;
+  background-color: #F0F4FF;
+  overflow-x: hidden;
+}
+
+html {
+  overflow-x: hidden;
+}
+
+img,
+video,
+iframe {
+  max-width: 100%;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+a,
+button,
+span {
+  overflow-wrap: anywhere;
 }

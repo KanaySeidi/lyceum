@@ -6,7 +6,7 @@ const EMPTY = { title: "", category: "", date: "", content: "", image: null, ima
 
 const Field = ({ label, children }) => (
   <div>
-    <label className="block text-xs font-bold uppercase tracking-wide mb-1.5" style={{ color: "#63001F99" }}>
+    <label className="block text-xs font-bold uppercase tracking-wide mb-1.5" style={{ color: "#1A3FA099" }}>
       {label}
     </label>
     {children}
@@ -14,7 +14,7 @@ const Field = ({ label, children }) => (
 );
 
 const inputCls = "w-full px-4 py-2.5 rounded-xl text-sm outline-none transition-all duration-200";
-const inputStyle = { border: "2px solid #63001F11", background: "#F8F2F4", color: "#63001F" };
+const inputStyle = { border: "2px solid #1A3FA011", background: "#F0F4FF", color: "#1A3FA0" };
 
 export default function NewsAdmin() {
   const { news, pinnedId, togglePin } = useNews();
@@ -70,13 +70,13 @@ export default function NewsAdmin() {
       {/* Заголовок */}
       <div className="flex items-center justify-between">
         <div>
-          <h2 className="text-2xl font-bold" style={{ color: "#63001F" }}>Новости</h2>
-          <p className="text-sm" style={{ color: "#63001F66" }}>{displayNews.length} материалов</p>
+          <h2 className="text-2xl font-bold" style={{ color: "#1A3FA0" }}>Новости</h2>
+          <p className="text-sm" style={{ color: "#1A3FA066" }}>{displayNews.length} материалов</p>
         </div>
         <button
           onClick={() => { setShowForm(!showForm); setEditId(null); setForm(EMPTY); }}
           className="flex items-center gap-2 px-5 py-2.5 rounded-xl font-bold text-sm text-white transition-all duration-200 hover:scale-105"
-          style={{ background: "linear-gradient(135deg, #63001F, #8B0032)", boxShadow: "0 4px 16px rgba(99,0,31,0.3)" }}
+          style={{ background: "linear-gradient(135deg, #1A3FA0, #1535A0)", boxShadow: "0 4px 16px rgba(26,63,160,0.3)" }}
         >
           {showForm ? "✕ Отмена" : "+ Добавить новость"}
         </button>
@@ -91,9 +91,9 @@ export default function NewsAdmin() {
             exit={{ opacity: 0, y: -16 }}
             transition={{ duration: 0.25 }}
             className="rounded-2xl p-6 space-y-4"
-            style={{ background: "#fff", border: "2px solid #C4973A44", boxShadow: "0 4px 24px rgba(99,0,31,0.1)" }}
+            style={{ background: "#fff", border: "2px solid #C4973A44", boxShadow: "0 4px 24px rgba(26,63,160,0.1)" }}
           >
-            <h3 className="font-bold text-base" style={{ color: "#63001F" }}>
+            <h3 className="font-bold text-base" style={{ color: "#1A3FA0" }}>
               {editId ? "✏️ Редактирование новости" : "➕ Новая новость"}
             </h3>
 
@@ -102,23 +102,23 @@ export default function NewsAdmin() {
                 <input name="title" value={form.title} onChange={handleChange} placeholder="Введите заголовок"
                   className={inputCls} style={inputStyle}
                   onFocus={(e) => (e.target.style.borderColor = "#C4973A")}
-                  onBlur={(e) => (e.target.style.borderColor = "#63001F11")} />
+                  onBlur={(e) => (e.target.style.borderColor = "#1A3FA011")} />
               </Field>
               <Field label="Категория">
                 <input name="category" value={form.category} onChange={handleChange} placeholder="Напр.: СОБЫТИЯ"
                   className={inputCls} style={inputStyle}
                   onFocus={(e) => (e.target.style.borderColor = "#C4973A")}
-                  onBlur={(e) => (e.target.style.borderColor = "#63001F11")} />
+                  onBlur={(e) => (e.target.style.borderColor = "#1A3FA011")} />
               </Field>
               <Field label="Дата">
                 <input name="date" type="date" value={form.date} onChange={handleChange}
                   className={inputCls} style={inputStyle}
                   onFocus={(e) => (e.target.style.borderColor = "#C4973A")}
-                  onBlur={(e) => (e.target.style.borderColor = "#63001F11")} />
+                  onBlur={(e) => (e.target.style.borderColor = "#1A3FA011")} />
               </Field>
               <Field label="Изображение">
                 <label className="flex items-center gap-3 cursor-pointer px-4 py-2.5 rounded-xl text-sm transition-all duration-200"
-                  style={{ border: "2px dashed #63001F33", background: "#F8F2F4", color: "#63001F99" }}>
+                  style={{ border: "2px dashed #1A3FA033", background: "#F0F4FF", color: "#1A3FA099" }}>
                   <span>📎 {form.image ? form.image.name : "Выбрать файл"}</span>
                   <input type="file" name="image" accept="image/*" onChange={handleChange} className="hidden" />
                 </label>
@@ -129,7 +129,7 @@ export default function NewsAdmin() {
               <textarea name="content" value={form.content} onChange={handleChange} placeholder="Текст новости..."
                 rows={5} className={inputCls} style={{ ...inputStyle, resize: "vertical" }}
                 onFocus={(e) => (e.target.style.borderColor = "#C4973A")}
-                onBlur={(e) => (e.target.style.borderColor = "#63001F11")} />
+                onBlur={(e) => (e.target.style.borderColor = "#1A3FA011")} />
             </Field>
 
             {form.imagePreview && (
@@ -139,12 +139,12 @@ export default function NewsAdmin() {
             <div className="flex gap-3 pt-2">
               <button onClick={handleSave}
                 className="px-6 py-2.5 rounded-xl font-bold text-sm text-white transition-all duration-200 hover:scale-105"
-                style={{ background: "linear-gradient(135deg, #63001F, #8B0032)", boxShadow: "0 4px 16px rgba(99,0,31,0.3)" }}>
+                style={{ background: "linear-gradient(135deg, #1A3FA0, #1535A0)", boxShadow: "0 4px 16px rgba(26,63,160,0.3)" }}>
                 💾 Сохранить
               </button>
               <button onClick={handleCancel}
                 className="px-6 py-2.5 rounded-xl font-bold text-sm transition-all duration-200"
-                style={{ background: "#63001F11", color: "#63001F" }}>
+                style={{ background: "#1A3FA011", color: "#1A3FA0" }}>
                 Отмена
               </button>
             </div>
@@ -165,8 +165,8 @@ export default function NewsAdmin() {
               className="flex items-center gap-4 p-4 rounded-2xl transition-all duration-200"
               style={{
                 background: "#fff",
-                border: isPinned ? "2px solid #C4973A" : "2px solid #63001F0D",
-                boxShadow: isPinned ? "0 4px 20px rgba(196,151,58,0.15)" : "0 2px 10px rgba(99,0,31,0.05)",
+                border: isPinned ? "2px solid #C4973A" : "2px solid #1A3FA00D",
+                boxShadow: isPinned ? "0 4px 20px rgba(196,151,58,0.15)" : "0 2px 10px rgba(26,63,160,0.05)",
               }}
             >
               {/* Фото */}
@@ -185,12 +185,12 @@ export default function NewsAdmin() {
                       📌 Закреплено
                     </span>
                   )}
-                  <span className="text-xs font-bold px-2 py-0.5 rounded-full" style={{ background: "#63001F0D", color: "#63001F99" }}>
+                  <span className="text-xs font-bold px-2 py-0.5 rounded-full" style={{ background: "#1A3FA00D", color: "#1A3FA099" }}>
                     {item.category}
                   </span>
                 </div>
-                <p className="font-bold text-sm truncate" style={{ color: "#63001F" }}>{item.title}</p>
-                <p className="text-xs" style={{ color: "#63001F55" }}>{item.date}</p>
+                <p className="font-bold text-sm truncate" style={{ color: "#1A3FA0" }}>{item.title}</p>
+                <p className="text-xs" style={{ color: "#1A3FA055" }}>{item.date}</p>
               </div>
 
               {/* Действия */}
@@ -201,8 +201,8 @@ export default function NewsAdmin() {
                   title={isPinned ? "Открепить" : "Закрепить на главной"}
                   className="w-9 h-9 rounded-xl flex items-center justify-center text-base transition-all duration-200 hover:scale-110"
                   style={{
-                    background: isPinned ? "#C4973A" : "#63001F0D",
-                    color: isPinned ? "#fff" : "#63001F66",
+                    background: isPinned ? "#C4973A" : "#1A3FA00D",
+                    color: isPinned ? "#fff" : "#1A3FA066",
                   }}
                 >
                   📌
@@ -212,7 +212,7 @@ export default function NewsAdmin() {
                 <button
                   onClick={() => handleEdit(item)}
                   className="w-9 h-9 rounded-xl flex items-center justify-center text-base transition-all duration-200 hover:scale-110"
-                  style={{ background: "#63001F0D", color: "#63001F" }}
+                  style={{ background: "#1A3FA00D", color: "#1A3FA0" }}
                 >
                   ✏️
                 </button>
@@ -240,7 +240,7 @@ export default function NewsAdmin() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               className="fixed inset-0 z-50"
-              style={{ background: "rgba(99,0,31,0.5)", backdropFilter: "blur(4px)" }}
+              style={{ background: "rgba(26,63,160,0.5)", backdropFilter: "blur(4px)" }}
               onClick={() => setDeleteId(null)}
             />
             <motion.div
@@ -248,10 +248,10 @@ export default function NewsAdmin() {
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.9 }}
               className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 w-full max-w-sm p-6 rounded-2xl"
-              style={{ background: "#fff", boxShadow: "0 20px 60px rgba(99,0,31,0.3)" }}
+              style={{ background: "#fff", boxShadow: "0 20px 60px rgba(26,63,160,0.3)" }}
             >
-              <p className="text-xl font-bold mb-2" style={{ color: "#63001F" }}>Удалить новость?</p>
-              <p className="text-sm mb-6" style={{ color: "#63001F77" }}>Это действие нельзя отменить.</p>
+              <p className="text-xl font-bold mb-2" style={{ color: "#1A3FA0" }}>Удалить новость?</p>
+              <p className="text-sm mb-6" style={{ color: "#1A3FA077" }}>Это действие нельзя отменить.</p>
               <div className="flex gap-3">
                 <button
                   onClick={() => handleDelete(deleteId)}
@@ -263,7 +263,7 @@ export default function NewsAdmin() {
                 <button
                   onClick={() => setDeleteId(null)}
                   className="flex-1 py-2.5 rounded-xl font-bold text-sm"
-                  style={{ background: "#63001F0D", color: "#63001F" }}
+                  style={{ background: "#1A3FA00D", color: "#1A3FA0" }}
                 >
                   Отмена
                 </button>

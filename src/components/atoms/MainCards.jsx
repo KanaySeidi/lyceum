@@ -1,6 +1,7 @@
 import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { motion, useInView } from "framer-motion";
+import { useTranslation } from "react-i18next";
 import { ArrowUpRight } from "lucide-react";
 
 import imgFront   from "../../assets/img/front.png";
@@ -14,15 +15,15 @@ import imgAuto    from "../../assets/img/CarMechanic.jpg";
 import imgExploit from "../../assets/img/exploitation1.jpg";
 
 const DIRECTIONS = [
-  { id: 1, title: "Front-End разработка",                             img: imgFront,   path: "/fr" },
-  { id: 2, title: "Back-End разработка",                              img: imgBack,    path: "/br" },
-  { id: 3, title: "Мобильная разработка",                             img: imgMobile,  path: "/md" },
-  { id: 4, title: "Мехатроника и робототехника",                      img: imgMech,    path: "/mr" },
-  { id: 5, title: "Технология Дизайна",                               img: imgTD,      path: "/td" },
-  { id: 6, title: "Системный администратор",                          img: imgSisAdm,  path: "/sa" },
-  { id: 7, title: "Информационная безопасность",                      img: imgInfo,    path: "/in" },
-  { id: 8, title: "Автослесарь по ремонту автомобилей",               img: imgAuto,    path: "/am" },
-  { id: 9, title: "Эксплуатация, обслуживание и ремонт спецтехники",  img: imgExploit, path: "/ex" },
+  { id: 1, titleKey: "front.name",          img: imgFront,   path: "/fr" },
+  { id: 2, titleKey: "backend.name",        img: imgBack,    path: "/br" },
+  { id: 3, titleKey: "mobDevelopment.name", img: imgMobile,  path: "/md" },
+  { id: 4, titleKey: "MechRob.name",        img: imgMech,    path: "/mr" },
+  { id: 5, titleKey: "TD.name",             img: imgTD,      path: "/td" },
+  { id: 6, titleKey: "SisAdm.name",         img: imgSisAdm,  path: "/sa" },
+  { id: 7, titleKey: "Information.name",    img: imgInfo,    path: "/in" },
+  { id: 8, titleKey: "AutoMechanic.name",   img: imgAuto,    path: "/am" },
+  { id: 9, titleKey: "exploitation.name",   img: imgExploit, path: "/ex" },
 ];
 
 const cardVariants = {
@@ -35,6 +36,7 @@ const cardVariants = {
 };
 
 const TiltCard = ({ item, index }) => {
+  const { t } = useTranslation();
   const cardRef = useRef(null);
   const [rotate, setRotate]   = useState({ x: 0, y: 0 });
   const [glow, setGlow]       = useState({ x: 50, y: 50 });
@@ -67,14 +69,14 @@ const TiltCard = ({ item, index }) => {
         animate={{ rotateX: rotate.x, rotateY: rotate.y }}
         transition={{ type: "spring", stiffness: 300, damping: 25 }}
         style={{ transformStyle: "preserve-3d" }}
-        className="relative h-64 rounded-2xl overflow-hidden cursor-pointer"
+        className="relative h-56 sm:h-64 rounded-2xl overflow-hidden cursor-pointer"
       >
         <Link to={item.path} className="block w-full h-full">
 
           {/* Картинка */}
           <img
             src={item.img}
-            alt={item.title}
+            alt={t(item.titleKey)}
             loading="lazy"
             className={`w-full h-full object-cover transition-transform duration-700 ${
               hovered ? "scale-110" : "scale-100"
@@ -106,7 +108,7 @@ const TiltCard = ({ item, index }) => {
 
           {/* Номер */}
           <span
-            className="absolute top-4 left-5 font-black text-5xl select-none transition-all duration-300"
+            className="absolute top-4 left-5 font-black text-4xl sm:text-5xl select-none transition-all duration-300"
             style={{
               color: hovered ? "rgba(196,151,58,0.6)" : "rgba(255,255,255,0.1)",
               transform: "translateZ(20px)",
@@ -117,21 +119,22 @@ const TiltCard = ({ item, index }) => {
 
           {/* Контент внизу */}
           <div
-            className="absolute bottom-0 left-0 right-0 p-5"
+            className="absolute bottom-0 left-0 right-0 p-4 sm:p-5"
             style={{ transform: "translateZ(15px)" }}
           >
-            <h3 className="text-white font-bold text-base leading-snug">
-              {item.title}
+            <h3 className="text-white font-bold text-sm sm:text-base leading-snug line-clamp-2">
+              {t(item.titleKey)}
             </h3>
 
             <div
-              className="flex items-center gap-1.5 mt-2 transition-all duration-300"
+              className={`flex items-center gap-1.5 mt-2 transition-all duration-300 ${
+                hovered ? "sm:opacity-100 sm:translate-y-0" : "sm:opacity-0 sm:translate-y-1.5"
+              } opacity-100 translate-y-0`}
               style={{
-                opacity: hovered ? 1 : 0,
-                transform: hovered ? "translateY(0)" : "translateY(6px)",
+                transform: hovered ? "translateZ(15px)" : undefined,
               }}
             >
-              <span className="text-white text-sm font-semibold">Подробнее</span>
+              <span className="text-white text-sm font-semibold">{t("common.more")}</span>
               <ArrowUpRight size={14} className="text-white" />
             </div>
           </div>

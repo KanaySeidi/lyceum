@@ -4,7 +4,7 @@ export default {
   theme: {
     extend: {
       colors: {
-        bordo: "#63001F",
+        bordo: "#1A3FA0",
         gold: "#C4973A",
       },
     },

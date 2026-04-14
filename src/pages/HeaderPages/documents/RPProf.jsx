@@ -21,14 +21,12 @@ const RPProf = () => {
     <div className="w-full px-4 pt-32 pb-20 bg-gradient-to-b from-gray-100 to-gray-300">
       <motion.button
         onClick={toggleContent}
-        className="mx-auto flex items-center justify-between w-full max-w-lg px-4 py-2 text-lg font-semibold text-white bg-bordo rounded-lg shadow-md transition hover:bg-bordo-dark"
+        className="mx-auto flex items-center justify-between w-full max-w-lg px-4 py-2 text-lg font-semibold text-white bg-[#1A3FA0] rounded-lg shadow-md transition hover:bg-[#1A3FA0]-dark"
         whileHover={{ scale: 1.03 }}
         whileTap={{ scale: 0.98 }}
       >
         <span>
-          {t("docsprograms.Profession", {
-            defaultValue: "Профессия",
-          })}
+          {t("docsprograms.Profession")}
         </span>
         <motion.div
           animate={{ rotate: isContentVisible ? -180 : 0 }}
@@ -54,10 +52,8 @@ const RPProf = () => {
                   onClick={() => handleToggle("webDeveloper")}
                   className="group flex w-full items-center justify-between border-b border-gray-300 pb-4"
                 >
-                  <span className="text-lg font-semibold bg-bordo text-white px-2 py-1 rounded transition-colors">
-                    {t("docsprograms.Profession", {
-                      defaultValue: "Профессия",
-                    })}
+                  <span className="text-lg font-semibold bg-[#1A3FA0] text-white px-2 py-1 rounded transition-colors">
+                    {t("docsprograms.Profession")}
                   </span>
                   <motion.div
                     animate={{
@@ -77,29 +73,23 @@ const RPProf = () => {
                       transition={{ duration: 0.4 }}
                       className="mt-4 p-4 border border-gray-300 rounded-lg bg-gray-50"
                     >
-                      <p className="text-xl font-bold text-bordo text-center mb-4">
-                        {t("docsdescriptions.Profession", {
-                          defaultValue: "Профессия",
-                        })}
+                      <p className="text-xl font-bold text-[#1A3FA0] text-center mb-4">
+                        {t("docsdescriptions.Profession")}
                       </p>
                       <div className="flex flex-col gap-2">
                         {[
                           {
                             href: "https://docs.google.com/document/d/1CG5BF0Sa7NqcWNOjew5HaUXbmldKMRnk/edit?usp=sharing&ouid=101506021742149629101&rtpof=true&sd=true",
-                            text: t("links.POPD", { defaultValue: "ПОПД" }),
+                            text: t("links.POPD"),
                           },
 
                           {
                             href: "https://docs.google.com/document/d/1J50Q5gyum2TlWxqsAGRHEUqETuElULxD/edit?usp=drive_link&ouid=101506021742149629101&rtpof=true&sd=true",
-                            text: t("links.Security", {
-                              defaultValue: "Безопасность",
-                            }),
+                            text: t("links.Security"),
                           },
                           {
                             href: "https://docs.google.com/document/d/1sPo-XwTclwFwbJsk971IVyRwBbgwiMml/edit?usp=drive_link&ouid=101506021742149629101&rtpof=true&sd=true",
-                            text: t("links.Profession", {
-                              defaultValue: "Профессия",
-                            }),
+                            text: t("links.Profession"),
                           },
                         ].map(({ href, text }) => (
                           <motion.a
@@ -109,7 +99,7 @@ const RPProf = () => {
                             rel="noopener noreferrer"
                             whileHover={{ scale: 1.03 }}
                             whileTap={{ scale: 0.98 }}
-                            className="inline-block px-4 py-2 text-sm font-medium text-white bg-bordo rounded-lg shadow-md transition"
+                            className="inline-block px-4 py-2 text-sm font-medium text-white bg-[#1A3FA0] rounded-lg shadow-md transition"
                           >
                             {text}
                           </motion.a>

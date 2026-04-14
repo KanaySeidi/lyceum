@@ -321,10 +321,10 @@ const AboutAdmin = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className="min-h-screen bg-gray-100 p-4 md:p-8"
+      className="min-h-screen bg-gray-100 p-4 md:p-4 sm:p-6 md:p-8"
     >
-      <div className="max-w-4xl mx-auto bg-white rounded-xl shadow-lg p-6 md:p-8">
-        <h1 className="text-3xl font-bold text-center text-bordo mb-6 flex items-center justify-center">
+      <div className="max-w-4xl mx-auto bg-white rounded-xl shadow-lg p-6 md:p-4 sm:p-6 md:p-8">
+        <h1 className="text-3xl font-bold text-center text-[#1A3FA0] mb-6 flex items-center justify-center">
           <FaEdit className="mr-2" /> Админ-панель: О нас
         </h1>
 
@@ -343,7 +343,7 @@ const AboutAdmin = () => {
               onChange={(e) =>
                 handleHeroChange("title", "text", e.target.value)
               }
-              className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-bordo"
+              className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-[#1A3FA0]"
               placeholder="Заголовок"
             />
             <input
@@ -352,7 +352,7 @@ const AboutAdmin = () => {
               onChange={(e) =>
                 handleHeroChange("title", "translation", e.target.value)
               }
-              className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-bordo"
+              className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-[#1A3FA0]"
               placeholder="Перевод заголовка"
             />
             <input
@@ -361,7 +361,7 @@ const AboutAdmin = () => {
               onChange={(e) =>
                 handleHeroChange("subtitle", "text", e.target.value)
               }
-              className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-bordo"
+              className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-[#1A3FA0]"
               placeholder="Подзаголовок"
             />
             <input
@@ -370,7 +370,7 @@ const AboutAdmin = () => {
               onChange={(e) =>
                 handleHeroChange("subtitle", "translation", e.target.value)
               }
-              className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-bordo"
+              className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-[#1A3FA0]"
               placeholder="Перевод подзаголовка"
             />
           </div>
@@ -396,7 +396,7 @@ const AboutAdmin = () => {
                 onChange={(e) =>
                   handleDescriptionChange(idx, "text", e.target.value)
                 }
-                className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-bordo"
+                className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-[#1A3FA0]"
                 placeholder="Текст описания"
                 rows="3"
               />
@@ -405,7 +405,7 @@ const AboutAdmin = () => {
                 onChange={(e) =>
                   handleDescriptionChange(idx, "translation", e.target.value)
                 }
-                className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-bordo"
+                className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-[#1A3FA0]"
                 placeholder="Перевод"
                 rows="3"
               />
@@ -421,7 +421,7 @@ const AboutAdmin = () => {
           <motion.button
             whileHover={{ scale: 1.05 }}
             onClick={handleAddDescription}
-            className="bg-bordo text-white px-4 py-2 rounded-lg flex items-center"
+            className="bg-[#1A3FA0] text-white px-4 py-2 rounded-lg flex items-center"
           >
             <FaPlus className="mr-2" /> Добавить описание
           </motion.button>
@@ -481,7 +481,7 @@ const AboutAdmin = () => {
                       text: e.target.value,
                     })
                   }
-                  className="w-full p-3 border rounded-lg mb-2 focus:ring-2 focus:ring-bordo"
+                  className="w-full p-3 border rounded-lg mb-2 focus:ring-2 focus:ring-[#1A3FA0]"
                   placeholder="Альтернативный текст"
                 />
                 <input
@@ -518,7 +518,7 @@ const AboutAdmin = () => {
           <motion.button
             whileHover={{ scale: 1.05 }}
             onClick={handleAddImageGallery}
-            className="bg-bordo text-white px-4 py-2 rounded-lg mt-4 flex items-center"
+            className="bg-[#1A3FA0] text-white px-4 py-2 rounded-lg mt-4 flex items-center"
           >
             <FaPlus className="mr-2" /> Добавить изображение
           </motion.button>
@@ -545,7 +545,7 @@ const AboutAdmin = () => {
                 onChange={(e) =>
                   handleStatisticsChange(idx, "value", "text", e.target.value)
                 }
-                className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-bordo"
+                className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-[#1A3FA0]"
                 placeholder="Значение"
               />
               <input
@@ -559,7 +559,7 @@ const AboutAdmin = () => {
                     e.target.value
                   )
                 }
-                className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-bordo"
+                className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-[#1A3FA0]"
                 placeholder="Перевод"
               />
               <motion.button
@@ -574,7 +574,7 @@ const AboutAdmin = () => {
           <motion.button
             whileHover={{ scale: 1.05 }}
             onClick={handleAddStatistics}
-            className="bg-bordo text-white px-4 py-2 rounded-lg flex items-center"
+            className="bg-[#1A3FA0] text-white px-4 py-2 rounded-lg flex items-center"
           >
             <FaPlus className="mr-2" /> Добавить статистику
           </motion.button>
@@ -776,7 +776,7 @@ const AboutAdmin = () => {
           <motion.button
             whileHover={{ scale: 1.05 }}
             onClick={handleAddCampusMedia}
-            className="bg-bordo text-white px-4 py-2 rounded-lg flex items-center"
+            className="bg-[#1A3FA0] text-white px-4 py-2 rounded-lg flex items-center"
           >
             <FaPlus className="mr-2" /> Добавить медиа
           </motion.button>
@@ -1019,7 +1019,7 @@ const AboutAdmin = () => {
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           onClick={handleSave}
-          className="bg-bordo text-white px-6 py-3 rounded-lg flex items-center mx-auto"
+          className="bg-[#1A3FA0] text-white px-6 py-3 rounded-lg flex items-center mx-auto"
         >
           <FaSave className="mr-2" /> Сохранить все изменения
         </motion.button>

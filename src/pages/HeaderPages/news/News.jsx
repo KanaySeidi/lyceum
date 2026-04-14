@@ -1,5 +1,6 @@
 import { useParams, Link } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { ArrowLeft } from "lucide-react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
@@ -9,6 +10,7 @@ import "swiper/css/navigation";
 import { useNews } from "../../../hooks/useNews";
 
 export const News = () => {
+  const { t } = useTranslation();
   const { id } = useParams();
   const { news, loading, getById } = useNews();
   const prevRef = useRef(null);
@@ -40,12 +42,12 @@ export const News = () => {
     return (
       <div
         className="min-h-screen flex items-center justify-center"
-        style={{ background: "#F8F2F4" }}
+        style={{ background: "#F0F4FF" }}
       >
-        <div className="space-y-4 w-full max-w-3xl px-6 animate-pulse">
-          <div className="h-6 rounded-full w-32" style={{ background: "#63001F22" }} />
-          <div className="h-10 rounded-xl w-3/4" style={{ background: "#63001F22" }} />
-          <div className="h-72 rounded-2xl" style={{ background: "#63001F11" }} />
+        <div className="space-y-4 w-full max-w-3xl px-4 sm:px-6 animate-pulse">
+          <div className="h-6 rounded-full w-32" style={{ background: "#1A3FA022" }} />
+          <div className="h-10 rounded-xl w-3/4" style={{ background: "#1A3FA022" }} />
+          <div className="h-72 rounded-2xl" style={{ background: "#1A3FA011" }} />
         </div>
       </div>
     );
@@ -55,44 +57,44 @@ export const News = () => {
     return (
       <div
         className="min-h-screen flex flex-col items-center justify-center gap-4"
-        style={{ background: "#F8F2F4" }}
+        style={{ background: "#F0F4FF" }}
       >
         <p className="text-5xl">📰</p>
-        <p className="text-xl font-bold" style={{ color: "#63001F" }}>
-          Статья не найдена
+        <p className="text-xl font-bold" style={{ color: "#1A3FA0" }}>
+          {t("newsArticle.notFound")}
         </p>
         <Link
           to="/news"
           className="px-5 py-2.5 rounded-xl text-sm font-bold text-white"
-          style={{ background: "#63001F" }}
+          style={{ background: "#1A3FA0" }}
         >
-          ← Вернуться к новостям
+          {t("newsArticle.backLinkShort")}
         </Link>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen" style={{ background: "#F8F2F4" }}>
+    <div className="min-h-screen" style={{ background: "#F0F4FF" }}>
       {/* ── HERO ARTICLE ── */}
       <div
         className="relative overflow-hidden"
         style={{
           background:
-            "linear-gradient(135deg, #63001F 0%, #8B0032 60%, #A0003A 100%)",
+            "linear-gradient(135deg, #1A3FA0 0%, #1535A0 60%, #0F2E8F 100%)",
         }}
       >
         <div
           className="absolute -top-16 -right-16 w-72 h-72 rounded-full opacity-10"
           style={{ background: "#C4973A" }}
         />
-        <div className="relative max-w-5xl mx-auto px-6 pt-10 pb-14">
+        <div className="relative max-w-5xl mx-auto px-4 sm:px-6 pt-8 sm:pt-10 pb-10 sm:pb-14">
           <Link
             to="/news"
             className="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-bold text-white/80 hover:text-white hover:bg-white/10 transition-all duration-200 mb-8"
           >
             <ArrowLeft className="w-4 h-4" />
-            Назад к новостям
+            {t("newsArticle.backButton")}
           </Link>
 
           <motion.div
@@ -100,7 +102,7 @@ export const News = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.55 }}
           >
-            <div className="flex items-center gap-3 mb-4">
+            <div className="flex flex-wrap items-center gap-2 sm:gap-3 mb-4">
               <span
                 className="text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full"
                 style={{ background: "#C4973A", color: "#fff" }}
@@ -109,7 +111,7 @@ export const News = () => {
               </span>
               <span className="text-white/50 text-sm">{article.date}</span>
             </div>
-            <h1 className="text-3xl md:text-5xl font-bold text-white leading-tight max-w-3xl">
+            <h1 className="text-2xl sm:text-3xl md:text-5xl font-bold text-white leading-tight max-w-3xl">
               {article.title}
             </h1>
           </motion.div>
@@ -117,15 +119,15 @@ export const News = () => {
       </div>
 
       {/* ── КОНТЕНТ ── */}
-      <div className="max-w-5xl mx-auto px-6 mt-10 pb-12">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 mt-6 sm:mt-10 pb-10 sm:pb-12">
         {/* Изображение */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.15 }}
-          className="rounded-2xl overflow-hidden mb-10"
+          className="rounded-2xl overflow-hidden mb-6 sm:mb-10"
           style={{
-            boxShadow: "0 8px 40px rgba(99,0,31,0.2)",
+            boxShadow: "0 8px 40px rgba(26,63,160,0.2)",
             border: "3px solid #C4973A44",
           }}
         >
@@ -133,7 +135,7 @@ export const News = () => {
             src={article.image}
             alt={article.title}
             loading="lazy"
-            className="w-full object-cover"
+            className="w-full h-56 sm:h-72 md:h-auto object-cover"
             style={{ maxHeight: 420 }}
           />
         </motion.div>
@@ -143,11 +145,11 @@ export const News = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="rounded-2xl p-8"
+          className="rounded-2xl p-4 sm:p-6 md:p-8"
           style={{
             background: "#fff",
-            border: "2px solid #63001F11",
-            boxShadow: "0 4px 20px rgba(99,0,31,0.06)",
+            border: "2px solid #1A3FA011",
+            boxShadow: "0 4px 20px rgba(26,63,160,0.06)",
           }}
         >
           <div
@@ -159,7 +161,7 @@ export const News = () => {
               <p
                 key={idx}
                 className="text-base leading-relaxed"
-                style={{ color: "#63001F99" }}
+                style={{ color: "#1A3FA099" }}
               >
                 {p.trim()}
               </p>
@@ -174,13 +176,13 @@ export const News = () => {
           className="py-14"
           style={{
             background:
-              "linear-gradient(180deg, #F8F2F4 0%, #fff 100%)",
+              "linear-gradient(180deg, #F0F4FF 0%, #fff 100%)",
           }}
         >
-          <div className="max-w-5xl mx-auto px-6">
+          <div className="max-w-5xl mx-auto px-4 sm:px-6">
             <div className="flex items-center gap-4 mb-8">
-              <h2 className="text-2xl font-bold" style={{ color: "#63001F" }}>
-                Читайте также
+              <h2 className="text-xl sm:text-2xl font-bold" style={{ color: "#1A3FA0" }}>
+                {t("newsArticle.readAlso")}
               </h2>
               <div
                 className="flex-1 h-px"
@@ -191,9 +193,9 @@ export const News = () => {
             <div className="relative">
               <button
                 ref={prevRef}
-                aria-label="Предыдущий"
-                className="absolute -left-5 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full flex items-center justify-center text-white transition-all duration-200 hover:scale-110"
-                style={{ background: "#63001F", boxShadow: "0 4px 12px rgba(99,0,31,0.3)" }}
+                aria-label={t("newsArticle.prevLabel")}
+                className="hidden sm:flex absolute -left-5 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full items-center justify-center text-white transition-all duration-200 hover:scale-110"
+                style={{ background: "#1A3FA0", boxShadow: "0 4px 12px rgba(26,63,160,0.3)" }}
               >
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
@@ -202,9 +204,9 @@ export const News = () => {
 
               <button
                 ref={nextRef}
-                aria-label="Следующий"
-                className="absolute -right-5 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full flex items-center justify-center text-white transition-all duration-200 hover:scale-110"
-                style={{ background: "#63001F", boxShadow: "0 4px 12px rgba(99,0,31,0.3)" }}
+                aria-label={t("newsArticle.nextLabel")}
+                className="hidden sm:flex absolute -right-5 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full items-center justify-center text-white transition-all duration-200 hover:scale-110"
+                style={{ background: "#1A3FA0", boxShadow: "0 4px 12px rgba(26,63,160,0.3)" }}
               >
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
@@ -230,7 +232,7 @@ export const News = () => {
                         transition={{ duration: 0.2 }}
                         className="rounded-2xl overflow-hidden"
                         style={{
-                          boxShadow: "0 4px 20px rgba(99,0,31,0.1)",
+                          boxShadow: "0 4px 20px rgba(26,63,160,0.1)",
                           border: "2px solid transparent",
                         }}
                       >
@@ -245,7 +247,7 @@ export const News = () => {
                             className="absolute inset-0"
                             style={{
                               background:
-                                "linear-gradient(to top, rgba(99,0,31,0.85) 0%, transparent 60%)",
+                                "linear-gradient(to top, rgba(26,63,160,0.85) 0%, transparent 60%)",
                             }}
                           />
                           <div className="absolute bottom-0 left-0 right-0 p-4">

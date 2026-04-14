@@ -16,7 +16,7 @@ export default function Example({ question, answer }) {
                 {question}
               </span>
               <ChevronDownIcon
-                className={`w-[3.75rem] h-[3.75rem] fill-bordo transition-transform duration-200 ease-in-out group-hover:fill-black/100 ${
+                className={`w-[3.75rem] h-[3.75rem] fill-[#1A3FA0] transition-transform duration-200 ease-in-out group-hover:fill-black/100 ${
                   open ? "rotate-180" : ""
                 }`}
               />

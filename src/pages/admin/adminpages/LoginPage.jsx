@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import logoRu from "../../../assets/icon/rus_logo.png";
+import logoSq from "../../../assets/img/logoSq.png";
 
 const LoginPage = () => {
   const [username, setUsername] = useState("");
@@ -26,13 +26,13 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="fixed inset-0 flex" style={{ background: "#F8F2F4" }}>
+    <div className="fixed inset-0 flex" style={{ background: "#F0F4FF" }}>
       {/* ── Левая панель ── */}
       <div
         className="hidden lg:flex flex-col justify-between w-[45%] p-12 relative overflow-hidden"
         style={{
           background:
-            "linear-gradient(145deg, #63001F 0%, #8B0032 60%, #A0003A 100%)",
+            "linear-gradient(145deg, #1A3FA0 0%, #1535A0 60%, #0F2E8F 100%)",
         }}
       >
         {/* Декор */}
@@ -80,7 +80,7 @@ const LoginPage = () => {
       </div>
 
       {/* ── Правая панель (форма) ── */}
-      <div className="flex-1 flex items-center justify-center p-8">
+      <div className="flex-1 flex items-center justify-center p-4 sm:p-6 md:p-8">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
@@ -89,17 +89,17 @@ const LoginPage = () => {
         >
           {/* Мобильный лого */}
           <div className="lg:hidden flex justify-center mb-8">
-            <img src={logoRu} alt="ПЛИТ" className="h-16 w-auto" />
+            <img src={logoSq} alt="ПЛИТ" className="h-16 w-auto" />
           </div>
 
           <div className="mb-8">
             <h2
               className="text-3xl font-bold mb-1"
-              style={{ color: "#63001F" }}
+              style={{ color: "#1A3FA0" }}
             >
               Добро пожаловать
             </h2>
-            <p style={{ color: "#63001F77" }}>
+            <p style={{ color: "#1A3FA077" }}>
               Войдите в панель администратора
             </p>
           </div>
@@ -109,7 +109,7 @@ const LoginPage = () => {
             <div>
               <label
                 className="block text-sm font-bold mb-2"
-                style={{ color: "#63001F" }}
+                style={{ color: "#1A3FA0" }}
               >
                 Логин
               </label>
@@ -120,12 +120,12 @@ const LoginPage = () => {
                 placeholder="Введите логин"
                 className="w-full px-4 py-3 rounded-xl text-sm outline-none transition-all duration-200"
                 style={{
-                  border: "2px solid #63001F22",
+                  border: "2px solid #1A3FA022",
                   background: "#fff",
-                  color: "#63001F",
+                  color: "#1A3FA0",
                 }}
                 onFocus={(e) => (e.target.style.borderColor = "#C4973A")}
-                onBlur={(e) => (e.target.style.borderColor = "#63001F22")}
+                onBlur={(e) => (e.target.style.borderColor = "#1A3FA022")}
               />
             </div>
 
@@ -133,7 +133,7 @@ const LoginPage = () => {
             <div>
               <label
                 className="block text-sm font-bold mb-2"
-                style={{ color: "#63001F" }}
+                style={{ color: "#1A3FA0" }}
               >
                 Пароль
               </label>
@@ -145,18 +145,18 @@ const LoginPage = () => {
                   placeholder="Введите пароль"
                   className="w-full px-4 py-3 rounded-xl text-sm outline-none transition-all duration-200 pr-12"
                   style={{
-                    border: "2px solid #63001F22",
+                    border: "2px solid #1A3FA022",
                     background: "#fff",
-                    color: "#63001F",
+                    color: "#1A3FA0",
                   }}
                   onFocus={(e) => (e.target.style.borderColor = "#C4973A")}
-                  onBlur={(e) => (e.target.style.borderColor = "#63001F22")}
+                  onBlur={(e) => (e.target.style.borderColor = "#1A3FA022")}
                 />
                 <button
                   type="button"
                   onClick={() => setShow(!show)}
                   className="absolute right-3 top-1/2 -translate-y-1/2 text-lg"
-                  style={{ color: "#63001F66" }}
+                  style={{ color: "#1A3FA066" }}
                 >
                   {show ? "🙈" : "👁️"}
                 </button>
@@ -170,9 +170,9 @@ const LoginPage = () => {
                 animate={{ opacity: 1, y: 0 }}
                 className="flex items-center gap-2 px-4 py-3 rounded-xl text-sm font-medium"
                 style={{
-                  background: "#63001F11",
-                  color: "#63001F",
-                  border: "1px solid #63001F33",
+                  background: "#1A3FA011",
+                  color: "#1A3FA0",
+                  border: "1px solid #1A3FA033",
                 }}
               >
                 ⚠️ {error}
@@ -185,8 +185,8 @@ const LoginPage = () => {
               disabled={loading}
               className="w-full py-3.5 rounded-xl font-bold text-white text-sm transition-all duration-200 hover:scale-[1.02] hover:shadow-lg disabled:opacity-70 disabled:cursor-not-allowed"
               style={{
-                background: "linear-gradient(135deg, #63001F, #8B0032)",
-                boxShadow: "0 4px 20px rgba(99,0,31,0.3)",
+                background: "linear-gradient(135deg, #1A3FA0, #1535A0)",
+                boxShadow: "0 4px 20px rgba(26,63,160,0.3)",
               }}
             >
               {loading ? (
@@ -220,7 +220,7 @@ const LoginPage = () => {
 
           <p
             className="text-center text-xs mt-8"
-            style={{ color: "#63001F44" }}
+            style={{ color: "#1A3FA044" }}
           >
             Демо: admin / admin
           </p>

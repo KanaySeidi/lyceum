@@ -9,7 +9,7 @@ const Frontend = () => {
     <DirectionPage
       image={img} image1={img2}
       name={t("front.name")}
-      tagline="Создаём интерфейсы, которые влюбляют пользователей с первого взгляда"
+      tagline={t("front.tagline")}
       title={t("front.title")}   text={t("front.text")}
       master={t("front.master")}
       lvl1={t("front.1lvl")}    lvl2={t("front.2lvl")}  lvl3={t("front.3lvl")}

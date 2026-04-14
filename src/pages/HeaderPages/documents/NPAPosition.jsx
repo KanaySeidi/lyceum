@@ -23,7 +23,7 @@ const NPAPosition = () => {
                 onClick={() => handleToggle("regulationsPlit99")}
                 className="group flex w-full items-center justify-between border-b border-gray-300 pb-4"
               >
-                <span className="text-lg font-semibold bg-bordo text-white px-2 py-1 rounded transition-colors">
+                <span className="text-lg font-semibold bg-[#1A3FA0] text-white px-2 py-1 rounded transition-colors">
                   {t("docsprograms.regulationsPlit99")}
                 </span>
                 <motion.div
@@ -44,7 +44,7 @@ const NPAPosition = () => {
                     transition={{ duration: 0.4 }}
                     className="mt-4 p-4 border border-gray-300 rounded-lg bg-gray-50"
                   >
-                    <p className="text-xl font-bold text-bordo text-center mb-4">
+                    <p className="text-xl font-bold text-[#1A3FA0] text-center mb-4">
                       {t("docsdescriptions.regulationsPlit99")}
                     </p>
                     <div className="flex flex-col gap-2">
@@ -133,7 +133,7 @@ const NPAPosition = () => {
                           rel="noopener noreferrer"
                           whileHover={{ scale: 1.03 }}
                           whileTap={{ scale: 0.98 }}
-                          className="inline-block px-4 py-2 text-sm font-medium text-white bg-bordo rounded-lg shadow-md transition"
+                          className="inline-block px-4 py-2 text-sm font-medium text-white bg-[#1A3FA0] rounded-lg shadow-md transition"
                         >
                           {text}
                         </motion.a>

@@ -1,12 +1,14 @@
 import { Dialog } from "@headlessui/react";
 import { useState, Fragment } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useTranslation } from "react-i18next";
 
 export default function Modal({
   title,
   titledescription,
   triggerLabel = "Open dialog",
 }) {
+  const { t } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -28,7 +30,7 @@ export default function Modal({
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 className="absolute inset-0"
-                style={{ background: "rgba(99,0,31,0.7)", backdropFilter: "blur(4px)" }}
+                style={{ background: "rgba(26,63,160,0.7)", backdropFilter: "blur(4px)" }}
                 onClick={() => setIsOpen(false)}
               />
 
@@ -45,14 +47,14 @@ export default function Modal({
                   style={{
                     background: "#fff",
                     border: "2px solid #C4973A55",
-                    boxShadow: "0 20px 60px rgba(99,0,31,0.35)",
+                    boxShadow: "0 20px 60px rgba(26,63,160,0.35)",
                   }}
                 >
                   {/* Header */}
                   <div
                     className="px-6 pt-6 pb-4"
                     style={{
-                      background: "linear-gradient(135deg, #63001F 0%, #8B0032 100%)",
+                      background: "linear-gradient(135deg, #1A3FA0 0%, #1535A0 100%)",
                     }}
                   >
                     <div className="flex items-center justify-between">
@@ -78,17 +80,17 @@ export default function Modal({
                   {/* Footer */}
                   <div
                     className="px-6 py-4 flex justify-end"
-                    style={{ borderTop: "1px solid #63001F11" }}
+                    style={{ borderTop: "1px solid #1A3FA011" }}
                   >
                     <button
                       onClick={() => setIsOpen(false)}
                       className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-bold text-white transition-all duration-200 hover:scale-105"
                       style={{
-                        background: "linear-gradient(135deg, #63001F, #8B0032)",
-                        boxShadow: "0 4px 15px rgba(99,0,31,0.3)",
+                        background: "linear-gradient(135deg, #1A3FA0, #1535A0)",
+                        boxShadow: "0 4px 15px rgba(26,63,160,0.3)",
                       }}
                     >
-                      Закрыть
+                      {t("common.close")}
                     </button>
                   </div>
                 </Dialog.Panel>

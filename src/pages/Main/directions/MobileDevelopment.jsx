@@ -9,7 +9,7 @@ const MobileDevelopment = () => {
     <DirectionPage
       image={img} image1={img2}
       name={t("mobDevelopment.name")}
-      tagline="Разрабатываем приложения, которые живут в кармане у миллионов"
+      tagline={t("mobDevelopment.tagline")}
       title={t("mobDevelopment.title")}   text={t("mobDevelopment.text")}
       master={t("mobDevelopment.master")}
       lvl1={t("mobDevelopment.1lvl")}    lvl2={t("mobDevelopment.2lvl")}  lvl3={t("mobDevelopment.3lvl")}

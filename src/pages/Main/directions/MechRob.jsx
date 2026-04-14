@@ -9,7 +9,7 @@ const MechRob = () => {
     <DirectionPage
       image={img} image1={img2}
       name={t("MechRob.name")}
-      tagline="Проектируем роботов и системы автоматизации будущего"
+      tagline={t("MechRob.tagline")}
       title={t("MechRob.title")}   text={t("MechRob.text")}
       master={t("MechRob.master")}
       lvl1={t("MechRob.1lvl")}    lvl2={t("MechRob.2lvl")}  lvl3={t("MechRob.3lvl")}

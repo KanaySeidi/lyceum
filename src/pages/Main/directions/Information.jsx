@@ -9,7 +9,7 @@ const Information = () => {
     <DirectionPage
       image={Iimg} image1={Iimg2}
       name={t("Information.name")}
-      tagline="Защищаем данные в эпоху, когда каждый байт на счету"
+      tagline={t("Information.tagline")}
       title={t("Information.title")}   text={t("Information.text")}
       master={t("Information.master")}
       lvl1={t("Information.1lvl")}    lvl2={t("Information.2lvl")}  lvl3={t("Information.3lvl")}

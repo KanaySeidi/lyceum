@@ -1,6 +1,7 @@
 import { useRef } from "react";
 import { Link } from "react-router-dom";
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
+import { useTranslation } from "react-i18next";
 import { ArrowLeft, ChevronDown } from "lucide-react";
 
 /* ─── Обёртка с анимацией при появлении ────────────────────── */
@@ -30,9 +31,9 @@ const LevelCard = ({ num, text, delay }) => {
       initial={{ opacity: 0, y: 24 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.55, delay, ease: "easeOut" }}
-      className="rounded-2xl p-6 bg-white/5 hover:bg-white/10 transition-colors duration-300"
+      className="rounded-2xl p-4 sm:p-6 bg-white/5 hover:bg-white/10 transition-colors duration-300"
     >
-      <p className="text-5xl font-black leading-none mb-4" style={{ color: "#C4973A" }}>
+      <p className="text-3xl sm:text-5xl font-black leading-none mb-3 sm:mb-4" style={{ color: "#C4973A" }}>
         {num}
       </p>
       <p className="text-white/85 text-sm leading-relaxed">{text}</p>
@@ -45,14 +46,14 @@ const SalaryCard = ({ label, text, variant, delay }) => {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, amount: 0.2 });
 
-  const base = "relative rounded-2xl p-6 shadow-lg overflow-hidden";
+  const base = "relative rounded-2xl p-4 sm:p-6 shadow-lg overflow-hidden";
   const themes = {
     junior: `${base} bg-white border border-gray-100`,
-    middle: `${base} bg-bordo text-white`,
-    senior: `${base} text-bordo`,
+    middle: `${base} bg-[#1A3FA0] text-white`,
+    senior: `${base} text-[#1A3FA0]`,
   };
-  const labelColor = { junior: "text-bordo", middle: "text-gold", senior: "text-bordo" };
-  const textColor  = { junior: "text-gray-600", middle: "text-white/80", senior: "text-bordo/80" };
+  const labelColor = { junior: "text-[#1A3FA0]", middle: "text-gold", senior: "text-[#1A3FA0]" };
+  const textColor  = { junior: "text-gray-600", middle: "text-white/80", senior: "text-[#1A3FA0]/80" };
 
   return (
     <motion.div
@@ -84,6 +85,7 @@ const DirectionPage = ({
   master, lvl1, lvl2, lvl3,
   salary, junior, middle, senior,
 }) => {
+  const { t } = useTranslation();
   const heroRef    = useRef(null);
   const contentRef = useRef(null);
 
@@ -99,14 +101,14 @@ const DirectionPage = ({
     <div className="w-full bg-gray-50">
 
       {/* ── HERO ─────────────────────────────────────────────── */}
-      <div ref={heroRef} className="relative w-full h-screen overflow-hidden">
+      <div ref={heroRef} className="relative w-full h-[calc(100svh-64px)] min-h-[430px] md:h-screen md:min-h-[600px] overflow-hidden">
         <motion.img
           src={image}
           alt={name}
           style={{ y: heroY }}
           className="absolute inset-0 w-full h-full object-cover scale-110"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-bordo via-bordo/55 to-black/40" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#1A3FA0] via-[#1A3FA0]/55 to-black/40" />
 
         {/* Назад */}
         <Link to="/">
@@ -114,32 +116,32 @@ const DirectionPage = ({
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.2, duration: 0.5 }}
-            className="absolute top-20 left-6 z-20 flex items-center gap-2 px-4 py-2
+            className="absolute top-4 sm:top-6 left-4 sm:left-6 z-20 flex items-center gap-2 px-3 sm:px-4 py-2
                        bg-white/10 backdrop-blur-md border border-white/25 rounded-full
                        text-white text-sm font-medium hover:bg-white/20 transition-all duration-300"
           >
             <ArrowLeft size={15} />
-            Назад
+            {t("common.back")}
           </motion.div>
         </Link>
 
         {/* Центр героя */}
         <motion.div
           style={{ opacity: heroOpacity }}
-          className="absolute inset-0 flex flex-col items-center justify-center text-center px-6"
+          className="absolute inset-0 flex flex-col items-center justify-center text-center px-4 sm:px-6 pt-12"
         >
           <motion.p
             initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.6 }}
-            className="text-gold text-xs font-bold uppercase tracking-[0.45em] mb-5"
+            className="text-gold text-[10px] sm:text-xs font-bold uppercase tracking-[0.28em] sm:tracking-[0.45em] mb-4 sm:mb-5"
           >
-            ПЛИТ №99
+            {t("common.plit99")}
           </motion.p>
 
           <motion.h1
             initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.45, duration: 0.7 }}
-            className="text-white text-4xl md:text-6xl lg:text-7xl font-extrabold leading-tight max-w-4xl"
+            className="text-white text-3xl min-[360px]:text-4xl md:text-6xl lg:text-7xl font-extrabold leading-tight max-w-4xl"
           >
             {name}
           </motion.h1>
@@ -148,7 +150,7 @@ const DirectionPage = ({
             <motion.p
               initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.65, duration: 0.6 }}
-              className="mt-5 text-white/70 text-base md:text-xl max-w-2xl leading-relaxed"
+              className="mt-4 sm:mt-5 text-white/75 text-sm sm:text-base md:text-xl max-w-2xl leading-relaxed"
             >
               {tagline}
             </motion.p>
@@ -161,8 +163,8 @@ const DirectionPage = ({
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1, duration: 0.5 }}
-          aria-label="Прокрутить вниз"
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 text-white/60
+          aria-label={t("common.scrollDown")}
+          className="absolute bottom-5 sm:bottom-8 left-1/2 -translate-x-1/2 text-white/60
                      hover:text-gold transition-colors duration-300 cursor-pointer"
         >
           <motion.div
@@ -176,34 +178,34 @@ const DirectionPage = ({
 
       {/* ── О НАПРАВЛЕНИИ ────────────────────────────────────── */}
       <div ref={contentRef} className="w-full bg-white">
-        <div className="max-w-6xl mx-auto px-6 py-20">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-16 md:py-20">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-14 items-center">
 
             <Reveal x={-30} y={0}>
               <div className="relative group">
-                <div className="absolute -inset-3 rounded-3xl bg-bordo/8
+                <div className="absolute -inset-2 sm:-inset-3 rounded-2xl sm:rounded-3xl bg-[#1A3FA0]/8
                                 group-hover:bg-gold/8 transition-colors duration-500 -z-10" />
                 <img
                   src={image1}
                   alt={title}
-                  className="w-full h-72 md:h-96 object-cover rounded-2xl shadow-2xl"
+                  className="w-full h-56 sm:h-72 md:h-96 object-cover rounded-2xl shadow-2xl"
                 />
-                <div className="absolute -bottom-4 -right-4 w-20 h-20 bg-gold/30 rounded-2xl -z-10" />
+                <div className="absolute -bottom-3 -right-3 sm:-bottom-4 sm:-right-4 w-14 h-14 sm:w-20 sm:h-20 bg-gold/30 rounded-2xl -z-10" />
               </div>
             </Reveal>
 
             <Reveal x={30} y={0} delay={0.15}>
-              <div className="flex items-center gap-2 bg-bordo/5 border border-bordo/15
+              <div className="flex items-center gap-2 bg-[#1A3FA0]/5 border border-[#1A3FA0]/15
                               rounded-full px-4 py-1.5 mb-6 w-fit">
-                <div className="w-2 h-2 rounded-full bg-bordo" />
-                <span className="text-bordo text-xs font-bold uppercase tracking-widest">
-                  О направлении
+                <div className="w-2 h-2 rounded-full bg-[#1A3FA0]" />
+                <span className="text-[#1A3FA0] text-xs font-bold uppercase tracking-widest">
+                  {t("directionPage.about")}
                 </span>
               </div>
-              <h2 className="text-2xl md:text-3xl font-extrabold text-gray-900 mb-5 leading-snug">
+              <h2 className="text-xl sm:text-2xl md:text-3xl font-extrabold text-gray-900 mb-4 sm:mb-5 leading-snug">
                 {title}
               </h2>
-              <p className="text-gray-600 leading-relaxed text-base md:text-lg">
+              <p className="text-gray-600 leading-relaxed text-sm sm:text-base md:text-lg">
                 {text}
               </p>
             </Reveal>
@@ -213,15 +215,15 @@ const DirectionPage = ({
       </div>
 
       {/* ── ПРОГРАММА ОБУЧЕНИЯ ───────────────────────────────── */}
-      <div className="w-full py-20 px-6"
-        style={{ background: "linear-gradient(135deg, #63001F 0%, #3d0012 100%)" }}>
+      <div className="w-full py-14 sm:py-16 md:py-20 px-4 sm:px-6"
+        style={{ background: "linear-gradient(135deg, #1A3FA0 0%, #3d0012 100%)" }}>
         <div className="max-w-3xl mx-auto">
 
-          <Reveal className="text-center mb-12">
-            <span className="text-gold text-xs font-bold uppercase tracking-[0.45em]">
-              Учебная программа
+          <Reveal className="text-center mb-8 sm:mb-12">
+            <span className="text-gold text-[10px] sm:text-xs font-bold uppercase tracking-[0.28em] sm:tracking-[0.45em]">
+              {t("directionPage.program")}
             </span>
-            <h2 className="text-white text-2xl md:text-4xl font-extrabold mt-3">
+            <h2 className="text-white text-xl sm:text-2xl md:text-4xl font-extrabold mt-3 leading-tight">
               {master}
             </h2>
             <div className="mx-auto mt-4 h-0.5 w-12 bg-gold rounded-full" />
@@ -237,17 +239,17 @@ const DirectionPage = ({
       </div>
 
       {/* ── ЗАРПЛАТЫ ─────────────────────────────────────────── */}
-      <div className="w-full bg-gray-50 py-20 px-6">
+      <div className="w-full bg-gray-50 py-14 sm:py-16 md:py-20 px-4 sm:px-6">
         <div className="max-w-4xl mx-auto">
 
-          <Reveal className="text-center mb-12">
-            <span className="text-gold text-xs font-bold uppercase tracking-[0.45em] mb-3 block">
-              Карьерные перспективы
+          <Reveal className="text-center mb-8 sm:mb-12">
+            <span className="text-gold text-[10px] sm:text-xs font-bold uppercase tracking-[0.28em] sm:tracking-[0.45em] mb-3 block">
+              {t("directionPage.career")}
             </span>
-            <h2 className="text-2xl md:text-4xl font-extrabold text-gray-900">
+            <h2 className="text-xl sm:text-2xl md:text-4xl font-extrabold text-gray-900 leading-tight">
               {salary}
             </h2>
-            <div className="mx-auto mt-4 h-0.5 w-12 bg-bordo rounded-full" />
+            <div className="mx-auto mt-4 h-0.5 w-12 bg-[#1A3FA0] rounded-full" />
           </Reveal>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5">

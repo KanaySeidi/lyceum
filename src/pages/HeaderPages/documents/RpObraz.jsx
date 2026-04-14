@@ -148,14 +148,12 @@ const RpObraz = () => {
     <div className="w-full px-4 pt-32 pb-20 bg-gradient-to-b from-gray-100 to-gray-300">
       <motion.button
         onClick={toggleContent}
-        className="mx-auto flex items-center justify-between w-full max-w-lg px-4 py-2 text-lg font-semibold text-white bg-bordo rounded-lg shadow-md transition hover:bg-bordo-dark"
+        className="mx-auto flex items-center justify-between w-full max-w-lg px-4 py-2 text-lg font-semibold text-white bg-[#1A3FA0] rounded-lg shadow-md transition hover:bg-[#1A3FA0]-dark"
         whileHover={{ scale: 1.03 }}
         whileTap={{ scale: 0.98 }}
       >
         <span>
-          {t("links.general_education_rp", {
-            defaultValue: "РП общеобразовательный",
-          })}
+          {t("links.general_education_rp")}
         </span>
         <motion.div
           animate={{ rotate: isContentVisible ? -180 : 0 }}
@@ -180,10 +178,8 @@ const RpObraz = () => {
                   onClick={() => handleToggle("russianGroup")}
                   className="group flex w-full items-center justify-between border-b border-gray-300 pb-4"
                 >
-                  <span className="text-lg font-semibold bg-bordo text-white px-2 py-1 rounded transition-colors">
-                    {t("links.general_education_rp_russian_group", {
-                      defaultValue: "РП общеобразовательный (русская группа)",
-                    })}
+                  <span className="text-lg font-semibold bg-[#1A3FA0] text-white px-2 py-1 rounded transition-colors">
+                    {t("links.general_education_rp_russian_group")}
                   </span>
                   <motion.div
                     animate={{
@@ -204,9 +200,7 @@ const RpObraz = () => {
                       className="mt-4 p-4 border border-gray-300 rounded-lg bg-gray-50"
                     >
                       <h1 className="text-3xl font-bold text-center mb-8">
-                        {t("links.study_programs", {
-                          defaultValue: "Учебные программы",
-                        })}
+                        {t("links.study_programs")}
                       </h1>
                       <div className="flex flex-col gap-2">
                         {russianGroupLinks.map(({ href, textKey }) => (
@@ -217,7 +211,7 @@ const RpObraz = () => {
                             rel="noopener noreferrer"
                             whileHover={{ scale: 1.03 }}
                             whileTap={{ scale: 0.98 }}
-                            className="inline-block px-4 py-2 text-sm font-medium text-white bg-bordo rounded-lg shadow-md transition"
+                            className="inline-block px-4 py-2 text-sm font-medium text-white bg-[#1A3FA0] rounded-lg shadow-md transition"
                           >
                             {t(textKey, { defaultValue: textKey })}
                           </motion.a>
@@ -237,11 +231,8 @@ const RpObraz = () => {
                   onClick={() => handleToggle("kyrgyzGroup")}
                   className="group flex w-full items-center justify-between border-b border-gray-300 pb-4"
                 >
-                  <span className="text-lg font-semibold bg-bordo text-white px-2 py-1 rounded transition-colors">
-                    {t("links.general_education_rp_kyrgyz_group", {
-                      defaultValue:
-                        "РП общеобразовательный (кыргызская группа)",
-                    })}
+                  <span className="text-lg font-semibold bg-[#1A3FA0] text-white px-2 py-1 rounded transition-colors">
+                    {t("links.general_education_rp_kyrgyz_group")}
                   </span>
                   <motion.div
                     animate={{
@@ -262,9 +253,7 @@ const RpObraz = () => {
                       className="mt-4 p-4 border border-gray-300 rounded-lg bg-gray-50"
                     >
                       <h1 className="text-3xl font-bold text-center mb-8">
-                        {t("links.study_programs", {
-                          defaultValue: "Учебные программы",
-                        })}
+                        {t("links.study_programs")}
                       </h1>
                       <div className="flex flex-col gap-2">
                         {kyrgyzGroupLinks.map(({ href, textKey }) => (
@@ -275,7 +264,7 @@ const RpObraz = () => {
                             rel="noopener noreferrer"
                             whileHover={{ scale: 1.03 }}
                             whileTap={{ scale: 0.98 }}
-                            className="inline-block px-4 py-2 text-sm font-medium text-white bg-bordo rounded-lg shadow-md transition"
+                            className="inline-block px-4 py-2 text-sm font-medium text-white bg-[#1A3FA0] rounded-lg shadow-md transition"
                           >
                             {t(`${textKey}`, { defaultValue: textKey })}
                           </motion.a>

@@ -1,208 +1,261 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useLocation, Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { Popover, PopoverButton, PopoverPanel } from "@headlessui/react";
-import { motion } from "framer-motion";
-import { LogIn } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { LogIn, ChevronDown, Menu, X } from "lucide-react";
 import LanguageSwitcher from "../molecules/LanguageSwitcher";
-import BurgerMenu from "../atoms/BurgerMenu";
-import logoRu from "../../assets/icon/rus_logo.png";
-import logoKg from "../../assets/icon/kg_logo.png";
+import logoSq from "../../assets/img/logoSq.png";
 
-// Popover для фиксированного хедера — панель всегда в DOM, видимость через CSS
-const FixedPopover = ({ label, links, offsetClass, onToggle }) => (
-  <Popover className="relative">
-    {({ open, close }) => (
-      <>
-        <PopoverButton className="focus:outline-none" onClick={onToggle}>
-          {label}
-        </PopoverButton>
-        <PopoverPanel
-          className={`absolute ${offsetClass} mt-2 w-46 bg-[#63001F] text-white shadow-lg rounded-lg transition-opacity duration-300 ${
-            open ? "opacity-100 visible" : "opacity-0 invisible"
-          }`}
-        >
-          <div className="p-2 flex flex-col text-base">
+const HEADER_H = 64;
+
+const NavDropdown = ({ label, links, isActive }) => {
+  const [open, setOpen] = useState(false);
+  const ref = useRef(null);
+  const location = useLocation();
+
+  useEffect(() => {
+    setOpen(false);
+  }, [location.pathname]);
+
+  useEffect(() => {
+    const handler = (e) => {
+      if (ref.current && !ref.current.contains(e.target)) setOpen(false);
+    };
+    document.addEventListener("mousedown", handler);
+    return () => document.removeEventListener("mousedown", handler);
+  }, []);
+
+  return (
+    <div ref={ref} className="relative">
+      <button
+        onClick={() => setOpen((v) => !v)}
+        className="flex items-center gap-1 px-3 py-1.5 rounded-lg text-sm font-semibold transition-all duration-200 group"
+        style={{ color: isActive ? "#C4973A" : "rgba(255,255,255,0.85)" }}
+      >
+        <span className="group-hover:text-white transition-colors duration-200">{label}</span>
+        <motion.span animate={{ rotate: open ? 180 : 0 }} transition={{ duration: 0.2 }}>
+          <ChevronDown size={14} />
+        </motion.span>
+        {/* Gold underline */}
+        <span
+          className="absolute bottom-0 left-3 right-3 h-0.5 rounded-full transition-all duration-300"
+          style={{ background: "#C4973A", transform: isActive || open ? "scaleX(1)" : "scaleX(0)", transformOrigin: "left" }}
+        />
+      </button>
+
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            initial={{ opacity: 0, y: 8, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 8, scale: 0.95 }}
+            transition={{ duration: 0.18 }}
+            className="absolute top-full left-0 mt-2 min-w-[180px] rounded-xl overflow-hidden z-50"
+            style={{
+              background: "#fff",
+              boxShadow: "0 8px 32px rgba(26,63,160,0.18), 0 2px 8px rgba(0,0,0,0.08)",
+              border: "1px solid rgba(26,63,160,0.1)",
+            }}
+          >
             {links.map(({ to, label: linkLabel }) => (
               <Link
-                key={to + linkLabel}
-                onClick={() => close()}
+                key={to}
                 to={to}
-                className="block px-3 py-2 hover:bg-gray-400 rounded"
+                onClick={() => setOpen(false)}
+                className="flex items-center gap-2 px-4 py-2.5 text-sm font-medium transition-all duration-150 group/item"
+                style={{ color: "#1A3FA0" }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.background = "#1A3FA0";
+                  e.currentTarget.style.color = "#fff";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.background = "transparent";
+                  e.currentTarget.style.color = "#1A3FA0";
+                }}
               >
                 {linkLabel}
               </Link>
             ))}
-          </div>
-        </PopoverPanel>
-      </>
-    )}
-  </Popover>
-);
-
-// Popover для статичного/мобильного хедера — панель рендерится условно через isOpen
-const StaticPopover = ({
-  label,
-  links,
-  offsetClass,
-  popoverClass,
-  isOpen,
-  onToggle,
-}) => (
-  <Popover className={popoverClass}>
-    {({ open, close }) => (
-      <>
-        <PopoverButton className="focus:outline-none" onClick={onToggle}>
-          {label}
-        </PopoverButton>
-        {isOpen && (
-          <PopoverPanel
-            className={`absolute ${offsetClass} mt-2 w-46 bg-white shadow-lg rounded-lg transition-opacity duration-300 ${
-              open ? "opacity-100 visible" : "opacity-0 invisible"
-            }`}
-          >
-            <div className="p-2 flex flex-col">
-              {links.map(({ to, label: linkLabel }) => (
-                <Link
-                  key={to + linkLabel}
-                  onClick={() => close()}
-                  to={to}
-                  className="block px-3 py-2 hover:bg-[#63001F] hover:text-white rounded"
-                >
-                  {linkLabel}
-                </Link>
-              ))}
-            </div>
-          </PopoverPanel>
+          </motion.div>
         )}
-      </>
-    )}
-  </Popover>
+      </AnimatePresence>
+    </div>
+  );
+};
+
+const NavLink = ({ to, children, isActive }) => (
+  <Link
+    to={to}
+    className="relative px-3 py-1.5 text-sm font-semibold rounded-lg transition-colors duration-200"
+    style={{ color: isActive ? "#C4973A" : "rgba(255,255,255,0.85)" }}
+    onMouseEnter={(e) => { if (!isActive) e.currentTarget.style.color = "#fff"; }}
+    onMouseLeave={(e) => { if (!isActive) e.currentTarget.style.color = "rgba(255,255,255,0.85)"; }}
+  >
+    {children}
+    <span
+      className="absolute bottom-0 left-3 right-3 h-0.5 rounded-full"
+      style={{
+        background: "#C4973A",
+        transform: isActive ? "scaleX(1)" : "scaleX(0)",
+        transformOrigin: "left",
+        transition: "transform 0.3s",
+      }}
+    />
+  </Link>
 );
 
 const Header = () => {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const location = useLocation();
-  const [isScroll, setIsScroll] = useState(false);
-  const [isKG, setIsKy] = useState(i18n.language === "KG");
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isPopoverOpen, setIsPopoverOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   const infoLinks = [
     { to: "/info/applicant", label: t("info.applicant") },
-    { to: "/info/docs", label: t("info.docs") },
+    { to: "/info/docs",      label: t("info.docs") },
   ];
-
   const plitLinks = [
-    { to: "/plit/about",     label: t("plit.about") },
-    { to: "/plit/teachers",  label: "Коллектив" },
+    { to: "/plit/about",    label: t("plit.about") },
+    { to: "/plit/teachers", label: t("header.staff") },
   ];
 
-  const togglePopover = () => setIsPopoverOpen((prev) => !prev);
+  const isInfo  = location.pathname.startsWith("/info");
+  const isPlit  = location.pathname.startsWith("/plit");
 
   useEffect(() => {
-    const handleScroll = () => setIsScroll(window.scrollY >= 60);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    const onScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   useEffect(() => {
-    const handleLangChange = (lng) => setIsKy(lng === "KG");
-    i18n.on("languageChanged", handleLangChange);
-    return () => i18n.off("languageChanged", handleLangChange);
-  }, [i18n]);
-
-  useEffect(() => {
-    setIsPopoverOpen(false);
+    setMobileOpen(false);
   }, [location.pathname]);
 
   return (
     <>
-      {/* Плавающий логотип */}
-      <div className="fixed top-0 left-1/2 transform -translate-x-1/2 z-50">
-        <motion.img
-          src={isKG ? logoKg : logoRu}
-          alt="ПЛИТ"
-          animate={{ height: isScroll ? 90 : 130 }}
-          transition={{ duration: 1, ease: "easeInOut" }}
-          className="w-auto"
-        />
-      </div>
+      <motion.header
+        className="fixed top-0 left-0 right-0 z-50"
+        animate={{
+          boxShadow: scrolled
+            ? "0 4px 24px rgba(26,63,160,0.25)"
+            : "0 1px 0 rgba(255,255,255,0.08)",
+        }}
+        transition={{ duration: 0.3 }}
+        style={{ background: "#1A3FA0", height: HEADER_H }}
+      >
+        <div className="max-w-7xl mx-auto h-full px-4 flex items-center justify-between gap-4">
 
-      {/* Единый фиксированный хедер */}
-      <div className={`w-full h-14 fixed top-0 left-0 z-40 shadow-md transition-colors duration-500 ${
-        isScroll ? "bg-[#63001F]" : "bg-white"
-      }`}>
-        <div className="w-11/12 mx-auto h-full">
-          <div className={`h-full flex justify-between items-center transition-colors duration-500 ${
-            isScroll ? "text-white" : "text-gray-800"
-          }`}>
-
-            <div className="flex justify-between gap-3 text-lg w-1/3 font-semibold">
-              <Link to="/" className="hover:opacity-70 transition-opacity duration-200">{t("header.home")}</Link>
-              <Link to="/courses" className="hover:opacity-70 transition-opacity duration-200">{t("header.course")}</Link>
-              <FixedPopover
-                label={t("header.info")}
-                links={infoLinks}
-                offsetClass="ml-[-22px]"
-                onToggle={togglePopover}
-              />
+          {/* ── LOGO ── */}
+          <Link to="/" className="flex items-center gap-2.5 flex-shrink-0 group">
+            <div
+              className="w-10 h-10 rounded-xl overflow-hidden flex-shrink-0 transition-transform duration-200 group-hover:scale-105"
+              style={{ boxShadow: "0 2px 12px rgba(0,0,0,0.2)" }}
+            >
+              <img src={logoSq} alt={t("header.logoAlt")} className="w-full h-full object-cover" />
             </div>
-
-            <div className="md:hidden flex w-1/3">
-              <BurgerMenu
-                isOpen={isMobileMenuOpen}
-                toggle={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              />
+            <div className="hidden sm:block leading-tight">
+              <p className="text-white font-bold text-sm tracking-wide">ПЛИТ №99</p>
+              <p className="text-xs" style={{ color: "#C4973A" }}>при Президенте Кыргызской Республики</p>
             </div>
+          </Link>
 
-            <div className="flex justify-around items-center gap-3 text-lg w-1/3 font-semibold">
-              <Link to="/news" className="hover:opacity-70 transition-opacity duration-200">{t("header.news")}</Link>
-              <FixedPopover
-                label={t("header.plit")}
-                links={plitLinks}
-                offsetClass="ml-[-60px]"
-                onToggle={togglePopover}
-              />
-              <LanguageSwitcher />
-              {location.pathname === "/" && (
-                <Link to="/admin/sign" className="hover:opacity-70 transition-opacity duration-200">
-                  <LogIn size={22} />
-                </Link>
-              )}
-            </div>
+          {/* ── DESKTOP NAV ── */}
+          <nav className="hidden md:flex items-center gap-1">
+            <NavLink to="/" isActive={location.pathname === "/"}>{t("header.home")}</NavLink>
+            <NavLink to="/courses" isActive={location.pathname === "/courses"}>{t("header.course")}</NavLink>
+            <NavDropdown label={t("header.info")} links={infoLinks} isActive={isInfo} />
+            <NavDropdown label={t("header.plit")} links={plitLinks} isActive={isPlit} />
+            <NavLink to="/news" isActive={location.pathname.startsWith("/news")}>{t("header.news")}</NavLink>
+          </nav>
 
+          {/* ── RIGHT ACTIONS ── */}
+          <div className="flex items-center gap-2">
+            <LanguageSwitcher />
+            <Link
+              to="/admin/sign"
+              className="hidden md:flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-all duration-200"
+              style={{
+                background: "rgba(196,151,58,0.15)",
+                color: "#C4973A",
+                border: "1px solid rgba(196,151,58,0.3)",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = "#C4973A";
+                e.currentTarget.style.color = "#fff";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = "rgba(196,151,58,0.15)";
+                e.currentTarget.style.color = "#C4973A";
+              }}
+            >
+              <LogIn size={14} />
+              <span className="hidden lg:inline">{t("header.admin")}</span>
+            </Link>
+
+            {/* Mobile burger */}
+            <button
+              onClick={() => setMobileOpen((v) => !v)}
+              aria-label={mobileOpen ? "Close menu" : "Open menu"}
+              className="md:hidden flex items-center justify-center w-9 h-9 rounded-lg transition-colors duration-200"
+              style={{ background: "rgba(255,255,255,0.1)", color: "#fff" }}
+            >
+              {mobileOpen ? <X size={18} /> : <Menu size={18} />}
+            </button>
           </div>
         </div>
-      </div>
+      </motion.header>
 
-      {/* Спейсер под фиксированный хедер */}
-      <div className="h-14" />
+      {/* Spacer */}
+      <div style={{ height: HEADER_H }} />
 
-      {/* Мобильное меню */}
-      {isMobileMenuOpen && (
-        <div className="md:hidden fixed top-14 left-0 w-full bg-[#63001F] text-white z-30 flex flex-col items-start p-4 gap-3 text-lg shadow-lg">
-          <Link to="/">{t("header.home")}</Link>
-          <Link to="/courses">{t("header.course")}</Link>
-          <Link to="/news">{t("header.news")}</Link>
-          <StaticPopover
-            label={t("header.info")}
-            links={infoLinks}
-            offsetClass="ml-[-20px]"
-            popoverClass="relative z-50"
-            isOpen={isPopoverOpen}
-            onToggle={togglePopover}
-          />
-          <StaticPopover
-            label={t("header.plit")}
-            links={plitLinks}
-            offsetClass="ml-[-60px]"
-            popoverClass="relative z-50"
-            isOpen={isPopoverOpen}
-            onToggle={togglePopover}
-          />
-        </div>
-      )}
+      {/* ── MOBILE MENU ── */}
+      <AnimatePresence>
+        {mobileOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.2 }}
+            className="md:hidden fixed z-40 left-0 right-0 overflow-y-auto"
+            style={{
+              top: HEADER_H,
+              maxHeight: `calc(100svh - ${HEADER_H}px)`,
+              background: "#1535A0",
+              boxShadow: "0 12px 40px rgba(26,63,160,0.3)",
+            }}
+          >
+            <div className="flex flex-col px-4 py-3 gap-1">
+              {[
+                { to: "/", label: t("header.home") },
+                { to: "/courses", label: t("header.course") },
+                { to: "/news", label: t("header.news") },
+                ...infoLinks,
+                ...plitLinks,
+              ].map(({ to, label }) => (
+                <Link
+                  key={to}
+                  to={to}
+                  className="px-4 py-2.5 rounded-xl text-sm font-semibold transition-colors duration-150"
+                  style={{
+                    color: location.pathname === to ? "#C4973A" : "rgba(255,255,255,0.85)",
+                    background: location.pathname === to ? "rgba(196,151,58,0.1)" : "transparent",
+                  }}
+                >
+                  {label}
+                </Link>
+              ))}
+              <Link
+                to="/admin/sign"
+                className="mt-1 mx-1 mb-2 px-4 py-2.5 rounded-xl text-sm font-bold text-center"
+                style={{ background: "rgba(196,151,58,0.15)", color: "#C4973A", border: "1px solid rgba(196,151,58,0.25)" }}
+              >
+                {t("header.admin")}
+              </Link>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 };

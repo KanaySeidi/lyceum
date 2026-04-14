@@ -9,7 +9,7 @@ const SisAdm = () => {
     <DirectionPage
       image={img} image1={img2}
       name={t("SisAdm.name")}
-      tagline="Обеспечиваем надёжность инфраструктуры, которая не спит никогда"
+      tagline={t("SisAdm.tagline")}
       title={t("SisAdm.title")}   text={t("SisAdm.text")}
       master={t("SisAdm.master")}
       lvl1={t("SisAdm.1lvl")}    lvl2={t("SisAdm.2lvl")}  lvl3={t("SisAdm.3lvl")}
